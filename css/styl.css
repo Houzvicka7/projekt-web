@@ -1,0 +1,190 @@
+/* ============================================
+   ŠKOLNÍ MEDIÁLNÍ PORTÁL - hlavní styl
+   Barvy celého webu změňte TADY (jedno místo):
+   ============================================ */
+:root{
+  --modra:#2456a6;        /* hlavní barva (nadpisy, odkazy, tlačítka) */
+  --modra-tmava:#16305c;  /* tmavá modrá (patička, horní lišta, hero) */
+  --modra-svetla:#eaf1fb; /* světle modré pozadí sekcí */
+  --oranzova:#f5a623;     /* akcent (odznaky, zvýraznění) */
+  --text:#24303f;         /* barva písma */
+  --sedivo:#5c6b7c;       /* šedé písmo (popisky) */
+  --pozadi:#f4f7fb;       /* pozadí stránek */
+  --bila:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;color:var(--text);background:var(--pozadi);line-height:1.65}
+img{max-width:100%;display:block}
+a{color:var(--modra);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* ---------- Horní lišta ---------- */
+.topbar{background:var(--modra-tmava);color:#cdd9ee;font-size:.85rem;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar a{color:#fff}
+
+/* ---------- Hlavička a menu ---------- */
+header{background:var(--bila);box-shadow:0 2px 8px rgba(22,48,92,.1);position:sticky;top:0;z-index:100}
+.hlavicka{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1100px;margin:0 auto;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--modra-tmava)}
+.logo:hover{text-decoration:none}
+.logo .emoji{font-size:1.7rem}
+.logo small{display:block;font-weight:400;font-size:.75rem;color:var(--sedivo)}
+nav ul{list-style:none;display:flex;gap:6px}
+nav a{display:block;padding:10px 14px;border-radius:8px;font-weight:600;color:var(--text)}
+nav a:hover{background:var(--modra-svetla);text-decoration:none}
+nav a.aktivni{background:var(--modra);color:#fff}
+.hamburger{display:none;background:none;border:2px solid var(--modra);border-radius:8px;font-size:1.4rem;padding:4px 12px;cursor:pointer;color:var(--modra)}
+
+/* ---------- Hero (úvodní panel) ---------- */
+.hero{background:linear-gradient(135deg,var(--modra-tmava) 0%,var(--modra) 70%);color:#fff;padding:60px 0 66px;text-align:center}
+.hero h1{font-size:2.2rem;margin-bottom:14px}
+.hero p{max-width:640px;margin:0 auto 26px;color:#dbe6f7;font-size:1.08rem}
+.tlacitka{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.tlacitko{display:inline-block;padding:12px 26px;border-radius:30px;font-weight:700;transition:.2s}
+.tlacitko:hover{text-decoration:none;transform:translateY(-2px)}
+.tlacitko-hlavni{background:var(--oranzova);color:#16305c}
+.tlacitko-ram{border:2px solid #fff;color:#fff}
+.tlacitko-drugi{background:var(--modra);color:#fff}
+
+/* ---------- Sekce ---------- */
+section{padding:52px 0}
+section.svetle-modra{background:var(--modra-svetla)}
+h2{font-size:1.55rem;color:var(--modra-tmava);display:flex;align-items:center;gap:10px;margin-bottom:24px}
+h2::before{content:'';display:inline-block;width:8px;height:30px;background:var(--oranzova);border-radius:4px;flex-shrink:0}
+h2 .vpravo{margin-left:auto;font-size:.85rem;font-weight:600}
+
+/* ---------- Karty ---------- */
+.karta{background:var(--bila);border-radius:12px;box-shadow:0 4px 16px rgba(22,48,92,.08);padding:22px;transition:.2s}
+.karta:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(22,48,92,.14)}
+.mrizka{display:grid;gap:22px}
+.mrizka-3{grid-template-columns:repeat(3,1fr)}
+.mrizka-2{grid-template-columns:repeat(2,1fr)}
+
+/* Bleskové zprávy / články */
+.zprava .datum{display:inline-block;background:var(--oranzova);color:#16305c;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.zprava h3{font-size:1.05rem;margin-bottom:8px;color:var(--modra-tmava)}
+.zprava p{font-size:.92rem;color:var(--sedivo)}
+
+/* Video (místo pro YouTube embed) */
+.video{position:relative;width:100%;aspect-ratio:16/9;background:var(--modra-tmava);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(22,48,92,.15);margin-bottom:16px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8fa8cf;gap:8px;text-align:center;padding:12px}
+.video-fallback .emoji{font-size:3rem}
+
+/* Obálka časopisu (místo pro titulní stranu PDF) */
+.obalka{width:100%;aspect-ratio:3/4;background:linear-gradient(150deg,var(--modra) 0%,var(--modra-tmava) 100%);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:20px;box-shadow:0 4px 16px rgba(22,48,92,.15);margin-bottom:16px}
+.obalka .emoji{font-size:3rem;margin-bottom:10px}
+.obalka .cislo{font-size:1.25rem;font-weight:800}
+.obalka .rok{color:#cdd9ee;font-size:.9rem}
+
+/* Rozcestník (dlaždice) */
+.dlazdice{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dlazdice a{background:var(--bila);border-radius:12px;padding:26px 20px;text-align:center;box-shadow:0 4px 16px rgba(22,48,92,.08);transition:.2s;color:var(--text)}
+.dlazdice a:hover{transform:translateY(-4px);text-decoration:none;box-shadow:0 10px 24px rgba(22,48,92,.14)}
+.dlazdice .emoji{font-size:2.2rem;display:block;margin-bottom:10px}
+.dlazdice .nazev{font-weight:700;color:var(--modra-tmava);display:block;margin-bottom:6px}
+.dlazdice .popis{font-size:.85rem;color:var(--sedivo)}
+
+/* Tým */
+.clen{text-align:center}
+.clen .avatar{width:84px;height:84px;border-radius:50%;background:var(--modra-svetla);display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin:0 auto 12px}
+.clen h3{color:var(--modra-tmava);font-size:1.05rem}
+.clen .role{color:#d98d00;font-weight:700;font-size:.85rem}
+.clen p{font-size:.88rem;color:var(--sedivo);margin-top:6px}
+
+/* Informace pro redaktory (žlutý rámeček) */
+.upozorneni{background:#fff8e6;border:1px solid #f0d48a;border-radius:12px;padding:14px 18px;font-size:.93rem;margin-bottom:26px;color:#6b5618}
+
+/* ---------- Patička ---------- */
+footer{background:var(--modra-tmava);color:#cdd9ee;margin-top:30px}
+.paticka{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding:44px 20px 30px;max-width:1100px;margin:0 auto}
+.paticka h3{color:#fff;font-size:1rem;margin-bottom:12px}
+.paticka a{color:#fff}
+.paticka ul{list-style:none}
+.paticka li{margin-bottom:7px;font-size:.92rem}
+.autorska{border-top:1px solid rgba(255,255,255,.15);text-align:center;padding:14px 20px;font-size:.82rem}
+
+/* ---------- Mobilní zobrazení ---------- */
+@media (max-width:820px){
+  .hamburger{display:block}
+  nav{display:none;width:100%}
+  nav.otevreno{display:block}
+  nav ul{flex-direction:column;width:100%;padding:6px 0}
+  .mrizka-3,.mrizka-2,.dlazdice{grid-template-columns:1fr}
+  .paticka{grid-template-columns:1fr}
+  .hero h1{font-size:1.7rem}
+  .uzivatel-box{width:100%;justify-content:center;padding-top:8px}
+}
+
+/* ============================================
+   PŘIHLAŠOVÁNÍ, ADMIN, NÁVODY, ČTEČKA
+   ============================================ */
+
+/* Box v hlavičce (přihlášení / přihlášený uživatel) */
+.uzivatel-box{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tlacitko-maly{display:inline-block;background:var(--modra);color:#fff;font-weight:700;font-size:.85rem;padding:8px 18px;border-radius:20px}
+.tlacitko-maly:hover{background:var(--modra-tmava);text-decoration:none;color:#fff}
+.uzivatel-jmeno{font-weight:700;color:var(--modra-tmava);font-size:.9rem}
+.uzivatel-box a{font-size:.85rem;font-weight:600}
+.odznak{font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px}
+.odznak-admin{background:var(--oranzova);color:#16305c}
+.odznak-redaktor{background:var(--modra-svetla);color:var(--modra);border:1px solid var(--modra)}
+.odznak-cekatel{background:#e7ebf0;color:#7a8899}
+
+/* Redaktorské oranžové zprávy – SKRYTÉ pro návštěvníky */
+.redaktorska{display:none}
+body.tym .redaktorska{display:block}
+
+/* Formuláře (přihlášení, registrace) */
+.formular-karta{max-width:440px;margin:0 auto}
+.formular label{display:block;font-weight:600;font-size:.9rem;margin:14px 0 6px;color:var(--modra-tmava)}
+.formular input{width:100%;padding:11px 14px;border:2px solid #d7e0ec;border-radius:8px;font-size:1rem;font-family:inherit}
+.formular input:focus{outline:none;border-color:var(--modra)}
+.formular-tlacitko{width:100%;border:none;cursor:pointer;margin-top:20px}
+.formular-tlacitko:hover{text-decoration:none}
+.napoveda-demo{font-size:.83rem;color:var(--sedivo);margin-top:14px;text-align:center}
+.napoveda-demo code{background:var(--modra-svetla);padding:2px 8px;border-radius:6px}
+.prepinac{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.prepinac-btn{border:2px solid var(--modra);background:none;color:var(--modra);font-weight:700;padding:8px 22px;border-radius:22px;cursor:pointer;font-family:inherit;font-size:.92rem}
+.prepinac-btn:hover{background:var(--modra-svetla)}
+.prepinac-btn.aktivni{background:var(--modra);color:#fff}
+.hlaseni{padding:12px 16px;border-radius:8px;margin-bottom:14px;font-size:.92rem}
+.hlaseni-chyba{background:#fdeaea;color:#a03030;border:1px solid #f0b9b9}
+.hlaseni-ok{background:#e8f6ec;color:#1e6b3a;border:1px solid #b5e0c4}
+
+/* Admin – tabulka uživatelů */
+.tabulka-wrap{overflow-x:auto}
+.tabulka{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(22,48,92,.08);min-width:640px}
+.tabulka th{background:var(--modra-tmava);color:#fff;text-align:left;padding:12px 14px;font-size:.85rem}
+.tabulka td{padding:12px 14px;border-top:1px solid #e7edf5;font-size:.92rem;vertical-align:middle}
+.akce-bunky{display:flex;gap:6px;flex-wrap:wrap}
+.tabulka button{border:0;border-radius:16px;padding:6px 13px;font-weight:700;cursor:pointer;font-size:.78rem;font-family:inherit}
+.btn-redaktor{background:var(--modra-svetla);color:var(--modra)}
+.btn-admin{background:var(--oranzova);color:#16305c}
+.btn-cekatel{background:#e7ebf0;color:#7a8899}
+.btn-smazat{background:#fdeaea;color:#a03030}
+.tabulka button:hover{filter:brightness(.95)}
+
+/* Redaktorské návody */
+.rychle-odkazy{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.rychle-odkazy a{background:#fff;border:1px solid #d7e0ec;border-radius:20px;padding:8px 16px;font-size:.88rem;font-weight:600;color:var(--modra-tmava)}
+.rychle-odkazy a:hover{background:var(--modra-svetla);text-decoration:none;border-color:var(--modra)}
+.navod-sekce{background:#fff;border-radius:12px;padding:26px;box-shadow:0 4px 16px rgba(22,48,92,.08);margin-bottom:22px}
+.navod-sekce h2{margin-top:0}
+.navod-sekce ol,.navod-sekce ul{margin:12px 0 0 22px}
+.navod-sekce li{margin-bottom:8px}
+.navod-sekce code{background:var(--modra-svetla);padding:2px 7px;border-radius:5px;font-size:.88em}
+.navod-sekce pre{background:#f0f4fa;border-radius:8px;padding:14px;overflow-x:auto;font-size:.85rem;margin-top:12px;white-space:pre-wrap}
+
+/* Čtečka PDF */
+.ctecka-ram{width:100%;height:78vh;min-height:420px;border:1px solid #d7e0ec;border-radius:12px;background:#fff;box-shadow:0 4px 16px rgba(22,48,92,.08)}
+
+/* Zamítnutý přístup */
+.zamitnuto{max-width:460px;margin:70px auto;text-align:center;padding:40px 24px;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(22,48,92,.08)}
+.zamitnuto .emoji{font-size:3rem;margin-bottom:10px}
+.zamitnuto h1{color:var(--modra-tmava);font-size:1.4rem;margin-bottom:8px}
+.zamitnuto p{color:var(--sedivo);margin-bottom:20px}
+.zamitnuto .tlacitko{margin:4px}

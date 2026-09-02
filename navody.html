@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redaktorské návody – Školní Mediální Portál</title>
+  <link rel="stylesheet" href="css/styl.css">
+</head>
+<body data-pristup="tym">
+
+  <div class="topbar">
+    <div class="container">
+      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="hlavicka">
+      <a class="logo" href="index.html">
+        <span class="emoji">📺📰</span>
+        <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
+      </a>
+      <button class="hamburger" aria-label="Menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="casopis.html">Školní Časopis</a></li>
+          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+        </ul>
+      </nav>
+      <div id="uzivatel-box" class="uzivatel-box"></div>
+    </div>
+  </header>
+
+  <div class="hero" style="padding:40px 0">
+    <div class="container">
+      <h1>Redaktorské návody 🛠️</h1>
+      <p>Vše, co tým potřebuje, je přímo tady na webu – nikdo nemusí otevírat žádné složky.<br>
+         Stránka je viditelná jen pro redaktory, učitele a webmastera.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+
+      <!-- Rychlé odkazy -->
+      <div class="rychle-odkazy">
+        <a href="#video">🎬 Vložit video</a>
+        <a href="#pdf">📰 Vydat číslo časopisu</a>
+        <a href="#ctecka">📖 Online čtečka</a>
+        <a href="#formular">🗒️ Formulář</a>
+        <a href="#zpravy">⚡ Zprávy &amp; tým</a>
+        <a href="#barvy">🎨 Barvy</a>
+        <a href="#bezpecnost">🔒 Bezpečnost</a>
+        <a href="#publikace">🚀 Na internet</a>
+      </div>
+
+      <div class="navod-sekce" id="video">
+        <h2>🎬 Jak vložit NOVÉ VIDEO (méně než 3 minuty)</h2>
+        <ol>
+          <li>Nahraj video na <strong>Školní YouTube kanál</strong> (nikdy přímo na web!).</li>
+          <li>Na YouTube klikni na video → <em>Sdílet</em> → <em>Vložit (Embed)</em> → zkopíruj kód začínající <code>&lt;iframe ...&gt;</code>.</li>
+          <li>Otevři <code>tv-reportaze.html</code> (nebo <code>index.html</code> pro nejnovější video).</li>
+          <li>Najdi komentář <code>===== ZDE VLOŽ EMBED KÓD =====</code> a nahraď zástupný blok (div s třídou <code>video</code>) tímto kódem:</li>
+        </ol>
+        <pre>&lt;div class="video"&gt;
+  &lt;iframe src="https://www.youtube-nocookie.com/embed/ID_VIDEA"
+          title="Název videa" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+        <p style="margin-top:10px">ID videa najdeš v adrese YouTube za <code>watch?v=</code> – jen ho zkopíruj. Ulož a obnov prohlížeč. Hotovo ✅</p>
+      </div>
+
+      <div class="navod-sekce" id="pdf">
+        <h2>📰 Jak vydat NOVÉ ČÍSLO ČASOPISU</h2>
+        <ol>
+          <li>PDF nahraj do složky <strong>Časopis</strong> na školním Google Disku → pravým tlačítkem → <em>Sdílet</em> → <em>Kdokoli s odkazem</em> → zkopíruj odkaz.</li>
+          <li>Otevři <code>casopis.html</code>, zkopíruj celý blok <code>&lt;!-- ===== Číslo ... --&gt;</code> … <code>&lt;!-- ===== KONEC --&gt;</code> a vlož ho <strong>nahoru</strong> do archivu.</li>
+          <li>Přepiš číslo, datum a do <code>href="..."</code> u tlačítka vlož odkaz na PDF.</li>
+          <li>Tlačítko <em>📖 Přečíst</em> nasměruj na čtečku: <code>ctecka.html?pdf=ODKAZ</code> (viz sekce níže).</li>
+          <li>Titulní stranu: až bude obrázek obálky, nahraď <code>&lt;div class="obalka"&gt;...&lt;/div&gt;</code> za <code>&lt;img src="obalka-1-2026.jpg" alt="Obálka"&gt;</code>.</li>
+        </ol>
+      </div>
+
+      <div class="navod-sekce" id="ctecka">
+        <h2>📖 Online čtečka (listování přímo na webu)</h2>
+        <ul>
+          <li>Stránka <code>ctecka.html</code> umí zobrazit PDF přímo v prohlížeči – čtenář v ní listuje i v mobilu.</li>
+          <li>Odkaz vypadá takto: <code>&lt;a href="ctecka.html?pdf=ODKAZ-NA-PDF"&gt;📖 Přečíst&lt;/a&gt;</code></li>
+          <li>U PDF z Google Disku použij adresu tvaru <code>https://drive.google.com/file/d/ID_SOBORU/preview</code> – ta se do rámce hodí nejlépe.</li>
+          <li>Případně můžeš použít listovací službu (Flipsnack / Issuu) a její embed kód vložit do sekce čtečky v <code>casopis.html</code>.</li>
+        </ul>
+      </div>
+
+      <div class="navod-sekce" id="formular">
+        <h2>🗒️ Jak vložit FORMULÁŘ PRO NÁPADY</h2>
+        <ol>
+          <li>Vytvoř Google Formulář (na školním účtu) → <em>Odeslat</em> → ikona <code>&lt;&gt;</code> → zkopíruj HTML kód.</li>
+          <li>Otevři <code>tym-kontakt.html</code>, najdi komentář <code>===== ZDE VLOŽ EMBED GOOGLE FORMULÁŘE =====</code> a zástupný blok nahraď zkopírovaným kódem.</li>
+        </ol>
+      </div>
+
+      <div class="navod-sekce" id="zpravy">
+        <h2>⚡ Jak přidat BLESKOVOU ZPRÁVU nebo ČLENA TÝMU</h2>
+        <ul>
+          <li>V <code>index.html</code> zkopíruj celý <code>&lt;div class="karta zprava"&gt;...&lt;/div&gt;</code> a vlož ho jako první v sekci Bleskové zprávy. Přepiš datum, nadpis a text.</li>
+          <li>V <code>tym-kontakt.html</code> zkopíruj <code>&lt;div class="karta clen"&gt;...&lt;/div&gt;</code> a přepiš údaje.</li>
+        </ul>
+      </div>
+
+      <div class="navod-sekce" id="barvy">
+        <h2>🎨 Jak změnit BARVY WEBU</h2>
+        <ul>
+          <li>V souboru <code>css/styl.css</code> jsou na začátku všechny barvy na jednom místě.</li>
+          <li>Změníš jednu hodnotu → změní se celý web (hlavička, tlačítka, patička…).</li>
+        </ul>
+      </div>
+      <div class="navod-sekce" id="bezpecnost">
+        <h2>🔒 Bezpečnost, práva a pravidla (NEMĚNIT!)</h2>
+        <ul>
+          <li><strong>Admin práva:</strong> pouze Štěpán + garant/učitel. Nikdo jiný nesmí mazat web nebo měnit strukturu.</li>
+          <li><strong>Redaktoři:</strong> vkládají jen nové příspěvky a soubory, strukturu webu nemění.</li>
+          <li><strong>GDPR:</strong> na web a YouTube patří POUZE žáci se souhlasem – vždy ověřit u vedení školy.</li>
+          <li><strong>Účty:</strong> nové účty schvaluje admin na stránce <a href="admin.html">Správa</a>. Nikdy nesdílej hesla!</li>
+          <li><strong>Poznámka:</strong> přihlašování je zatím simulace (účty v prohlížeči). Po přechodu na Firebase budou účty skutečné a společné.</li>
+        </ul>
+      </div>
+
+      <div class="navod-sekce" id="publikace">
+        <h2>🚀 Přesun na internet (až bude web hotový)</h2>
+        <ul>
+          <li>Kód funguje všude – stačí nahrát tyto soubory na:</li>
+          <li><strong>Netlify Drop</strong> (zdarma, přetáhnutí složky do prohlížeče – nejjednodušší),</li>
+          <li><strong>GitHub Pages</strong> (zdarma, ideální pro školní projekt),</li>
+          <li>nebo školní hosting / Webnode přes FTP.</li>
+        </ul>
+      </div>
+
+      <div class="upozorneni redaktorska" data-navod="publikace">
+        📌 <strong>Pravidlo pro Štěpána:</strong> pokud vkládání nového článku zabere víc než
+        3 minuty → systém je moc složitý a je potřeba ho zjednodušit.
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="paticka">
+      <div>
+        <h3>O portálu</h3>
+        <p style="font-size:.92rem">Školní Mediální Portál provozuje žácký redakční a TV tým
+           pod dohledem koordinačního učitele.</p>
+      </div>
+      <div>
+        <h3>Sekce</h3>
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="casopis.html">Školní Časopis</a></li>
+          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li>✉️ Webmaster: Štěpán (9. třída)</li>
+          <li>📰 Redakce: Magda a tým</li>
+          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="autorska">
+      © 2026 Školní Mediální Portál • Na webu se objevují pouze žáci se souhlasem
+      s fotografováním/natáčením (GDPR)
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

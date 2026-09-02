@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Správa uživatelů – Školní Mediální Portál</title>
+  <link rel="stylesheet" href="css/styl.css">
+</head>
+<body data-pristup="admin">
+
+  <div class="topbar">
+    <div class="container">
+      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="hlavicka">
+      <a class="logo" href="index.html">
+        <span class="emoji">📺📰</span>
+        <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
+      </a>
+      <button class="hamburger" aria-label="Menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="casopis.html">Školní Časopis</a></li>
+          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+        </ul>
+      </nav>
+      <div id="uzivatel-box" class="uzivatel-box"></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>🛠️ Správa uživatelů</h2>
+      <p style="margin-bottom:20px">Tady přiřazuješ lidem role. <strong>Redaktor</strong> vidí
+         oranžové zprávy a návody. <strong>ADMIN</strong> umí všechno (správa uživatelů, mazání).</p>
+      <div id="admin-obsah" style="display:none">
+        <div class="tabulka-wrap">
+          <table class="tabulka" id="tabulka-uzivatelu">
+            <thead>
+              <tr><th>Jméno</th><th>E-mail</th><th>Role</th><th>Akce</th></tr>
+            </thead>
+            <tbody id="radky-uzivatelu"></tbody>
+          </table>
+        </div>
+        <p style="font-size:.85rem;color:var(--sedivo);margin-top:14px">
+          ⚠️ Simulace: účty se ukládají v prohlížeči tohoto zařízení. Po přechodu na Firebase
+          budou účty společné pro všechny.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="paticka">
+      <div>
+        <h3>O portálu</h3>
+        <p style="font-size:.92rem">Školní Mediální Portál provozuje žácký redakční a TV tým
+           pod dohledem koordinačního učitele.</p>
+      </div>
+      <div>
+        <h3>Sekce</h3>
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="casopis.html">Školní Časopis</a></li>
+          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li>✉️ Webmaster: Štěpán (9. třída)</li>
+          <li>📰 Redakce: Magda a tým</li>
+          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="autorska">
+      © 2026 Školní Mediální Portál • Na webu se objevují pouze žáci se souhlasem
+      s fotografováním/natáčením (GDPR)
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    // Stránka se vykreslí jen pro ADMINa (auth.js ji jinak zablokuje)
+    if (Auth.maRoli('admin')) {
+      document.getElementById('admin-obsah').style.display = 'block';
+      vykresli();
+    }
+
+    function roleNazev(r) {
+      return { admin: 'ADMIN', redaktor: 'Redaktor', cekatel: 'Čeká na schválení' }[r];
+    }
+
+    function vykresli() {
+      var tbody = document.getElementById('radky-uzivatelu');
+      var vsichni = Auth.vsechnyUzivatele();
+      tbody.innerHTML = '';
+      vsichni.forEach(function (u) {
+        var tr = document.createElement('tr');
+        var ja = (u.email === (Auth.aktualni() || {}).email);
+        tr.innerHTML =
+          '<td><strong>' + u.jmeno + '</strong>' + (ja ? ' <span class="odznak odznak-admin">ty</span>' : '') + '</td>' +
+          '<td>' + u.email + '</td>' +
+          '<td><span class="odznak odznak-' + u.role + '">' + roleNazev(u.role) + '</span></td>' +
+          '<td class="akce-bunky">' +
+            (u.role !== 'redaktor' ? '<button class="btn-redaktor" data-email="' + u.email + '" data-role="redaktor">→ Redaktor</button>' : '') +
+            (u.role !== 'admin' ? '<button class="btn-admin" data-email="' + u.email + '" data-role="admin">→ ADMIN</button>' : '') +
+            (u.role !== 'cekatel' ? '<button class="btn-cekatel" data-email="' + u.email + '" data-role="cekatel">→ Zamítnout</button>' : '') +
+            (!ja ? '<button class="btn-smazat" data-smazat="' + u.email + '">🗑 Smazat</button>' : '') +
+          '</td>';
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll('button[data-email]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          Auth.zmenRoli(b.getAttribute('data-email'), b.getAttribute('data-role'));
+          vykresli();
+        });
+      });
+      tbody.querySelectorAll('button[data-smazat]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (confirm('Opravdu smazat účet ' + b.getAttribute('data-smazat') + '?')) {
+            Auth.smazUzivatele(b.getAttribute('data-smazat'));
+            vykresli();
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
