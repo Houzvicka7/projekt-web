@@ -4,43 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Čtení PDF – Školní Mediální Portál</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styl.css?v=3">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
   <div class="topbar">
     <div class="container">
-      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="emoji">📺📰</span>
+        <span class="logo-znak">SMP</span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"></button>
       <nav>
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html" class="aktivni">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </nav>
+      <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
       <div id="uzivatel-box" class="uzivatel-box"></div>
     </div>
   </header>
 
   <section>
     <div class="container">
-      <h2 id="ctecka-nadpis">📖 Čtení časopisu</h2>
+      <h2 id="ctecka-nadpis"> Čtení časopisu</h2>
 
       <!-- Stav: žádné PDF v odkazu -->
       <div id="pdf-prazdny" class="upozorneni" style="display:none">
-        📭 Zatím tu není žádné číslo ke čtení. Jakmile vyjde první číslo,
+         Zatím tu není žádné číslo ke čtení. Jakmile vyjde první číslo,
         objeví se tady přímo na stránce a půjde listovat i v mobilu.
       </div>
 
@@ -48,7 +53,7 @@
       <iframe id="pdf-ram" class="ctecka-ram" title="Čtení PDF" style="display:none"></iframe>
 
       <div class="tlacitka" style="justify-content:flex-start;margin-top:18px">
-        <a id="pdf-stahnout" class="tlacitko tlacitko-drugi" href="#" download>⬇ Stáhnout PDF</a>
+        <a id="pdf-stahnout" class="tlacitko tlacitko-drugi" href="#" download> Stáhnout PDF</a>
         <a class="tlacitko tlacitko-ram" style="border-color:var(--modra);color:var(--modra)" href="casopis.html">← Zpět do archivu</a>
       </div>
     </div>
@@ -66,16 +71,16 @@
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li>✉️ Webmaster: Štěpán (9. třída)</li>
-          <li>📰 Redakce: Magda a tým</li>
-          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li> Webmaster: Štěpán (9. třída)</li>
+          <li> Redakce: Magda a tým</li>
+          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>

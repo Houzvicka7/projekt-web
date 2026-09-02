@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!pristupPovolen) {
       document.body.innerHTML =
         '<div class="zamitnuto">' +
-        '<div class="emoji">🔒</div>' +
+        '' +
         '<h1>' + (u ? 'Nemáš přístup na tuto stránku' : 'Nejsi přihlášený') + '</h1>' +
         '<p>' + (u ? 'Tato stránka je určena jen pro tým webu.' : 'Pro vstup se prosím přihlas.') + '</p>' +
         '<a class="tlacitko tlacitko-drugi" href="prihlaseni.html">Přihlásit se</a> ' +

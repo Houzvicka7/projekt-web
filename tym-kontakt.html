@@ -4,39 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tým &amp; Kontakt – Školní Mediální Portál</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styl.css?v=3">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
   <div class="topbar">
     <div class="container">
-      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="emoji">📺📰</span>
+        <span class="logo-znak">SMP</span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"></button>
       <nav>
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html" class="aktivni">Tým &amp; Kontakt</a></li>
         </ul>
       </nav>
+      <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
       <div id="uzivatel-box" class="uzivatel-box"></div>
     </div>
   </header>
 
   <div class="hero">
     <div class="container">
-      <h1>Náš tým &amp; Kontakt 👋</h1>
+      <h1>Náš tým &amp; Kontakt </h1>
       <p>Poznej lidi, kteří stojí za školními médii. A pokud máš nápad na článek,
          tip na reportáž nebo si chceš přát písničku do vysílání – napiš nám!</p>
     </div>
@@ -45,46 +50,46 @@
   <!-- NÁŠ TÝM – nový člen = zkopírovat jeden <div class="karta clen"> blok -->
   <section>
     <div class="container">
-      <h2>👥 Kdo za tím stojí</h2>
+      <h2> Kdo za tím stojí</h2>
       <div class="mrizka mrizka-3">
 
         <div class="karta clen">
-          <div class="avatar">🧑‍💻</div>
+          <div class="avatar">Š</div>
           <h3>Štěpán</h3>
           <div class="role">Vedoucí IT sekce / Webmaster</div>
           <p>Spravuje web, Školní TV a všechna technická zázemí. 9. třída.</p>
         </div>
 
         <div class="karta clen">
-          <div class="avatar">✍️</div>
+          <div class="avatar">M</div>
           <h3>Magda</h3>
           <div class="role">Šéfredaktorka časopisu</div>
           <p>Vede redakci, sbírá články a připravuje každé nové číslo.</p>
         </div>
 
         <div class="karta clen">
-          <div class="avatar">🎬</div>
+          <div class="avatar">T</div>
           <h3>TV tým</h3>
           <div class="role">Školní TV</div>
           <p>Natáčí reportáže a rozhovory ze školních akcí.</p>
         </div>
 
         <div class="karta clen">
-          <div class="avatar">🧑‍🏫</div>
+          <div class="avatar">U</div>
           <h3>Koordinační učitel</h3>
           <div class="role">Garant projektu / IT správce</div>
           <p>Dozoruje obsah, souhlasy (GDPR) a bezpečnost webu.</p>
         </div>
 
         <div class="karta clen">
-          <div class="avatar">🖊️</div>
+          <div class="avatar">R</div>
           <h3>Redaktoři</h3>
           <div class="role">Redakce časopisu</div>
           <p>Píší články, rozhovory a připravují rubriky.</p>
         </div>
 
         <div class="karta clen">
-          <div class="avatar">🙋</div>
+          <div class="avatar"></div>
           <h3>Ty?</h3>
           <div class="role">Chceš se přidat?</div>
           <p>Rádi přijmeme nové redaktory, filmaře i fotografy. Napiš nám!</p>
@@ -97,22 +102,22 @@
   <!-- KONTAKT + FORMULÁŘ – sem vlož embed Google Formuláře (viz NAVOD.md) -->
   <section class="svetle-modra">
     <div class="container">
-      <h2>💡 Nápady, tipy, kontakt</h2>
+      <h2> Nápady, tipy, kontakt</h2>
       <div class="mrizka mrizka-2">
         <div class="karta">
-          <h3 style="color:var(--modra-tmava);margin-bottom:10px">📬 Napiš nám</h3>
+          <h3 style="color:var(--modra-tmava);margin-bottom:10px"> Napiš nám</h3>
           <p style="margin-bottom:10px">Máš tip na téma, otázku pro rozhovor nebo jsi udělal(a)
              něco zajímavého? Dej nám vědět!</p>
           <ul style="list-style:none;font-size:.95rem">
-            <li>✉️ E-mail redakce: <strong>redakce@skola.cz</strong> (doplnit)</li>
-            <li>📺 Školní TV: přes třídní učitele nebo formulář</li>
-            <li>🛠️ Technický problém: Štěpán (webmaster)</li>
+            <li> E-mail redakce: <strong>redakce@skola.cz</strong> (doplnit)</li>
+            <li> Školní TV: přes třídní učitele nebo formulář</li>
+            <li> Technický problém: Štěpán (webmaster)</li>
           </ul>
         </div>
         <div class="karta">
-          <h3 style="color:var(--modra-tmava);margin-bottom:10px">🗒️ Formulář pro nápady</h3>
+          <h3 style="color:var(--modra-tmava);margin-bottom:10px"> Formulář pro nápady</h3>
           <div class="upozorneni redaktorska" style="margin-bottom:0">
-            📌 <strong>Pro IT tým:</strong> sem se vloží embed Google Formuláře –
+             <strong>Pro IT tým:</strong> sem se vloží embed Google Formuláře –
             postup je na stránce
             <a href="navody.html#formular"><strong>Návod</strong></a>.
           </div>
@@ -120,7 +125,7 @@
           <!-- ===== ZDE VLOŽ EMBED GOOGLE FORMULÁŘE (nahraď celý div class="video") ===== -->
           <div class="video" style="margin-top:14px;aspect-ratio:auto;height:220px">
             <div class="video-fallback">
-              <span class="emoji">🗒️</span>
+              
               <span>Zde bude formulář pro nápady</span>
               <span>(Google Formulář se sem vloží později)</span>
             </div>
@@ -144,16 +149,16 @@
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li>✉️ Webmaster: Štěpán (9. třída)</li>
-          <li>📰 Redakce: Magda a tým</li>
-          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li> Webmaster: Štěpán (9. třída)</li>
+          <li> Redakce: Magda a tým</li>
+          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>

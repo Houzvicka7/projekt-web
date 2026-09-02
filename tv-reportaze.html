@@ -3,63 +3,79 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Školní TV &amp; Reportáže – Školní Mediální Portál</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <title>Školní TV a Reportáže – Školní Mediální Portál</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styl.css?v=3">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
   <div class="topbar">
     <div class="container">
-      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="emoji">📺📰</span>
+        <span class="logo-znak">SMP</span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"></button>
       <nav>
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html" class="aktivni">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html" class="aktivni">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </nav>
+      <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
       <div id="uzivatel-box" class="uzivatel-box"></div>
     </div>
   </header>
 
   <div class="hero">
     <div class="container">
-      <h1>Školní TV &amp; Reportáže 🎬</h1>
+      <h1>Školní TV a Reportáže </h1>
       <p>Video-reportáže, rozhovory a záznamy ze školních akcí. Videa jsou na Školním
          YouTube kanálu – na webu jsou jen vložené (embed), takže se web stále načítá rychle.</p>
     </div>
   </div>
 
+  <section style="padding-top:44px;padding-bottom:0">
+    <div class="container banner-youtube">
+      <div>
+        <h2 style="margin-bottom:6px">Podívej se na náš YouTube kanál</h2>
+        <p>Všechna videa, rozhovory i záznamy ze školních akcí najdeš na našem kanálu.</p>
+      </div>
+      <a id="odkaz-youtube" class="tlacitko tlacitko-drugi" href="#" title="Odkaz na kanál doplní webmaster v souboru js/obsah.js">Otevřít YouTube →</a>
+    </div>
+  </section>
+
   <!-- PŘEHLED VIDEÍ – nové video = zkopírovat jeden <div class="karta"> blok
        a uvnitř nahradit div class="video-fallback" YouTube embed kódem (viz NAVOD.md) -->
   <section>
     <div class="container">
-      <h2>🎥 Nejnovější videa</h2>
+      <h2> Nejnovější videa</h2>
       <div class="upozorneni redaktorska">
-        📌 <strong>Pro TV tým:</strong> každá kartička níže je místo pro jedno video.
+         <strong>Pro TV tým:</strong> každá kartička níže je místo pro jedno video.
         Jakmile budete mít video na YouTube, vložte embed kód dovnitř bloku
         (postup na stránce <a href="navody.html#video"><strong>Návod</strong></a>).
       </div>
 
-      <div class="mrizka mrizka-3">
+      <div id="videa-list" class="mrizka mrizka-3" style="margin-bottom:22px"></div>
+      <div id="videa-zaloha" class="mrizka mrizka-3">
 
         <!-- ===== Video 1 – zatím kostka ===== -->
         <div class="karta">
           <div class="video" style="box-shadow:none">
             <div class="video-fallback">
-              <span class="emoji">🎥</span>
+              
               <span>Zde bude video 1</span>
             </div>
           </div>
@@ -72,7 +88,7 @@
         <div class="karta">
           <div class="video" style="box-shadow:none">
             <div class="video-fallback">
-              <span class="emoji">🎥</span>
+              
               <span>Zde bude video 2</span>
             </div>
           </div>
@@ -85,7 +101,7 @@
         <div class="karta">
           <div class="video" style="box-shadow:none">
             <div class="video-fallback">
-              <span class="emoji">🎥</span>
+              
               <span>Zde bude video 3</span>
             </div>
           </div>
@@ -110,16 +126,16 @@
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li>✉️ Webmaster: Štěpán (9. třída)</li>
-          <li>📰 Redakce: Magda a tým</li>
-          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li> Webmaster: Štěpán (9. třída)</li>
+          <li> Redakce: Magda a tým</li>
+          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>
@@ -131,5 +147,6 @@
 
   <script src="js/auth.js"></script>
   <script src="js/menu.js"></script>
+  <script src="js/obsah.js"></script>
 </body>
 </html>

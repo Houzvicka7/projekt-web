@@ -4,15 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Úvod – Školní Mediální Portál</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styl.css?v=3">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
   <!-- Horní lišta -->
   <div class="topbar">
     <div class="container">
-      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
@@ -20,18 +24,19 @@
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="emoji">📺📰</span>
+        <span class="logo-znak">SMP</span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"></button>
       <nav>
         <ul>
           <li><a href="index.html" class="aktivni">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </nav>
+      <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
       <div id="uzivatel-box" class="uzivatel-box"></div>
     </div>
   </header>
@@ -39,11 +44,11 @@
   <!-- Hero panel -->
   <div class="hero">
     <div class="container">
-      <h1>Sleduj život školy online 🎬</h1>
+      <h1>Sleduj život školy online </h1>
       <p>Vítej na Školním Mediálním Portálu! Najdeš tu naše časopisy, video-reportáže,
          rozhovory a záznamy ze školních akcí. Vše tvoří sami žáci.</p>
       <div class="tlacitka">
-        <a class="tlacitko tlacitko-hlavni" href="#nejnovejsi-video">▶ Přehrát nejnovější video</a>
+        <a class="tlacitko tlacitko-hlavni" href="#nejnovejsi-video"> Přehrát nejnovější video</a>
         <a class="tlacitko tlacitko-ram" href="casopis.html">Přečíst časopis</a>
       </div>
     </div>
@@ -52,8 +57,9 @@
   <!-- BLESKOVÉ ZPRÁVY – nový článek = zkopírovat jeden <div class="karta zprava"> blok -->
   <section>
     <div class="container">
-      <h2>⚡ Bleskové zprávy</h2>
-      <div class="mrizka mrizka-3">
+      <h2> Bleskové zprávy</h2>
+      <div id="zpravy-list" class="mrizka mrizka-3" style="margin-bottom:22px"></div>
+      <div id="zpravy-zaloha" class="mrizka mrizka-3">
 
         <div class="karta zprava">
           <span class="datum">12. 2. 2026</span>
@@ -82,20 +88,23 @@
   <!-- NEJNOVĚJŠÍ VIDEO – sem vlož YouTube embed kód (návody v souboru NAVOD.md) -->
   <section class="svetle-modra" id="nejnovejsi-video">
     <div class="container">
-      <h2>🎬 Nejnovější video</h2>
+      <h2> Nejnovější video</h2>
       <div class="upozorneni redaktorska">
-        📌 <strong>Pro redaktory:</strong> toto je zástupný blok. Jakmile budete mít video,
+         <strong>Pro redaktory:</strong> toto je zástupný blok. Jakmile budete mít video,
         nahrajte ho na Školní YouTube kanál a embed kód vložte do tohoto bloku
         (postup na stránce <a href="navody.html#video"><strong>Návod</strong></a>).
       </div>
 
+      <div id="video-list"></div>
+      <div id="video-zaloha">
       <!-- ===== ZDE VLOŽ EMBED KÓD NEJNOVĚJŠÍHO VIDEA (nahraď celý div class="video") ===== -->
       <div class="video">
         <div class="video-fallback">
-          <span class="emoji">🎥</span>
+          
           <span>Zde bude nejnovější video</span>
           <span>(YouTube video se sem vloží později)</span>
         </div>
+      </div>
       </div>
       <!-- ===== KONEC MÍSTA PRO VIDEO ===== -->
 
@@ -105,12 +114,12 @@
   <!-- AKTUÁLNÍ ČÍSLO ČASOPISU -->
   <section>
     <div class="container">
-      <h2>📰 Aktuální číslo časopisu</h2>
+      <h2> Aktuální číslo časopisu</h2>
       <div class="mrizka mrizka-2">
         <div>
           <!-- Titulní strana: když bude PDF, vlož místo emoji obrázek <img src="..."> -->
           <div class="obalka">
-            <span class="emoji">🗞️</span>
+            
             <span class="cislo">Číslo 1 / 2026</span>
             <span class="rok">Obálka čísla – zatím ukázka</span>
           </div>
@@ -120,9 +129,9 @@
           <p style="margin-bottom:16px">Redakce pod vedením Magdy právě dokončuje první číslo.
              Jakmile bude hotové, tady najdeš obálku a tlačítko ke stažení PDF.</p>
           <div class="tlacitka" style="justify-content:flex-start">
-            <a class="tlacitko tlacitko-hlavni" href="ctecka.html">📖 Přečíst</a>
+            <a class="tlacitko tlacitko-hlavni" href="ctecka.html"> Přečíst</a>
             <a class="tlacitko tlacitko-drugi" href="casopis.html">Archiv všech čísel →</a>
-            <!-- Po vydání sem dej: <a class="tlacitko tlacitko-hlavni" href="ODKAZ-NA-PDF" download>⬇ Stáhnout PDF</a> -->
+            <!-- Po vydání sem dej: <a class="tlacitko tlacitko-hlavni" href="ODKAZ-NA-PDF" download> Stáhnout PDF</a> -->
           </div>
         </div>
       </div>
@@ -132,25 +141,25 @@
   <!-- ROZCESTNÍK (dlaždice jako na zssteti-skolni.cz) -->
   <section class="svetle-modra">
     <div class="container">
-      <h2>🧭 Rozcestník</h2>
+      <h2> Rozcestník</h2>
       <div class="dlazdice">
         <a href="casopis.html">
-          <span class="emoji">📰</span>
+          <span class="ikona-polozka">Č</span>
           <span class="nazev">Školní Časopis</span>
           <span class="popis">Archiv vydaných čísel v PDF a online čtečka.</span>
         </a>
         <a href="tv-reportaze.html">
-          <span class="emoji">🎬</span>
-          <span class="nazev">Školní TV &amp; Reportáže</span>
+          <span class="ikona-polozka">TV</span>
+          <span class="nazev">Školní TV a Reportáže</span>
           <span class="popis">Video-reportáže, rozhovory a záznamy z akcí.</span>
         </a>
         <a href="tym-kontakt.html">
-          <span class="emoji">💡</span>
+          <span class="ikona-polozka">?</span>
           <span class="nazev">Nápady a tipy</span>
           <span class="popis">Máš tip na článek? Pošli ho redakci přes formulář.</span>
         </a>
         <a href="#" title="Odkaz na Školní YouTube kanál doplníme později">
-          <span class="emoji">▶️</span>
+          <span class="ikona-polozka">YT</span>
           <span class="nazev">YouTube kanál</span>
           <span class="popis">Kanál Školní TV – zatím se připravuje.</span>
         </a>
@@ -171,16 +180,16 @@
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li>✉️ Webmaster: Štěpán (9. třída)</li>
-          <li>📰 Redakce: Magda a tým</li>
-          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li> Webmaster: Štěpán (9. třída)</li>
+          <li> Redakce: Magda a tým</li>
+          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>
@@ -192,5 +201,6 @@
 
   <script src="js/auth.js"></script>
   <script src="js/menu.js"></script>
+  <script src="js/obsah.js"></script>
 </body>
 </html>

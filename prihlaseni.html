@@ -4,39 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Přihlášení – Školní Mediální Portál</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styl.css?v=3">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
   <div class="topbar">
     <div class="container">
-      <span>📰 Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html">💡 Máš nápad na článek? Napiš nám!</a>
+      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="emoji">📺📰</span>
+        <span class="logo-znak">SMP</span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"></button>
       <nav>
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </nav>
+      <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
       <div id="uzivatel-box" class="uzivatel-box"></div>
     </div>
   </header>
 
   <div class="hero" style="padding:40px 0">
     <div class="container">
-      <h1>Přihlášení pro tým 🔑</h1>
+      <h1>Přihlášení pro tým </h1>
       <p>Čtenářům se nic nemění – celý web je pro ně otevřený bez přihlášení.<br>
          Přihlašují se jen redaktoři, učitelé a webmaster (aby viděli návody a redaktorské zprávy).</p>
     </div>
@@ -88,16 +93,16 @@
         <ul>
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
-          <li><a href="tv-reportaze.html">Školní TV &amp; Reportáže</a></li>
+          <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
           <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li>✉️ Webmaster: Štěpán (9. třída)</li>
-          <li>📰 Redakce: Magda a tým</li>
-          <li>💡 <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li> Webmaster: Štěpán (9. třída)</li>
+          <li> Redakce: Magda a tým</li>
+          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>
@@ -137,10 +142,10 @@
         document.getElementById('p-heslo').value
       );
       if (vysledek.ok) {
-        hlaseni('✅ Přihlášení proběhlo úspěšně, přesměrovávám…', true);
+        hlaseni(' Přihlášení proběhlo úspěšně, přesměrovávám…', true);
         setTimeout(function () { location.href = 'index.html'; }, 800);
       } else {
-        hlaseni('❌ ' + vysledek.chyba, false);
+        hlaseni(' ' + vysledek.chyba, false);
       }
     });
 
@@ -152,10 +157,10 @@
         document.getElementById('r-heslo').value
       );
       if (vysledek.ok) {
-        hlaseni('✅ Účet vytvořen! Admin tě zařadí mezi redaktory, pak se přihlaš.', true);
+        hlaseni(' Účet vytvořen! Admin tě zařadí mezi redaktory, pak se přihlaš.', true);
         setTimeout(function () { zobraz(true); }, 1500);
       } else {
-        hlaseni('❌ ' + vysledek.chyba, false);
+        hlaseni(' ' + vysledek.chyba, false);
       }
     });
   </script>
