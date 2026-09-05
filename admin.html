@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Správa uživatelů – Školní Mediální Portál</title>
+  <title>Správa rolí – Školní Mediální Portál</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -14,8 +14,8 @@
 
   <div class="topbar">
     <div class="container">
-      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
+      <span>Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html">Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
           <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
-          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+          <li><a href="tym-kontakt.html">Tým a Kontakt</a></li>
         </ul>
       </nav>
       <button id="tema-tlacitko" class="prepinac-tema" type="button" aria-label="Přepnout tmavý režim"><span class="prepinac-tema-text">Světlý mód</span><span class="prepinac-tema-kolejko"><span class="prepinac-tema-koule"></span></span></button>
@@ -41,21 +41,32 @@
 
   <section>
     <div class="container">
-      <h2> Správa uživatelů</h2>
-      <p style="margin-bottom:20px">Tady přiřazuješ lidem role. <strong>Redaktor</strong> vidí
-         oranžové zprávy a návody. <strong>ADMIN</strong> umí všechno (správa uživatelů, mazání).</p>
+      <h2>Správa rolí</h2>
+      <p style="margin-bottom:20px">Tady přiřazuješ lidem role. <strong>Redaktor</strong> vidí oranžové zprávy a
+         návody, <strong>ADMIN</strong> umí všechno. Role se ukládají do listu „Role“ ve tvé tabulce.</p>
+
       <div id="admin-obsah" style="display:none">
+        <div class="karta pridat-panel-karta" style="margin-bottom:22px">
+          <h3 style="margin-top:0;margin-bottom:6px">Přidat / aktualizovat člověka</h3>
+          <div class="mrizka-form">
+            <div><label>E-mail (Google účet)</label><input id="spr-email" type="email"></div>
+            <div><label>Jméno</label><input id="spr-jmeno"></div>
+            <div><label>Role</label><select id="spr-role"><option value="redaktor">redaktor</option><option value="admin">admin</option></select></div>
+          </div>
+          <button type="button" class="tlacitko tlacitko-zeleny" id="spr-ulozit">Uložit do tabulky</button>
+          <div class="upr-hlaseni" id="spr-hlaseni"></div>
+        </div>
+
         <div class="tabulka-wrap">
-          <table class="tabulka" id="tabulka-uzivatelu">
-            <thead>
-              <tr><th>Jméno</th><th>E-mail</th><th>Role</th><th>Akce</th></tr>
-            </thead>
-            <tbody id="radky-uzivatelu"></tbody>
+          <table class="tabulka">
+            <thead><tr><th>Jméno</th><th>E-mail</th><th>Role</th><th>Akce</th></tr></thead>
+            <tbody id="radky-rol"></tbody>
           </table>
         </div>
+
         <p style="font-size:.85rem;color:var(--sedivo);margin-top:14px">
-           Simulace: účty se ukládají v prohlížeči tohoto zařízení. Po přechodu na Firebase
-          budou účty společné pro všechny.
+          Poznámka: nový člověk se musí jednou přihlásit přes Google (tlačítko v hlavičce),
+          pak mu role funguje. Trvalý admin z konfigurace se nedá odebrat.
         </p>
       </div>
     </div>
@@ -74,15 +85,15 @@
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
           <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
-          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+          <li><a href="tym-kontakt.html">Tým a Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li> Webmaster: Štěpán (9. třída)</li>
-          <li> Redakce: Magda a tým</li>
-          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li>Webmaster: Štěpán (9. třída)</li>
+          <li>Redakce: Magda a tým</li>
+          <li><a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>
@@ -92,54 +103,120 @@
     </div>
   </footer>
 
-  <script src="js/auth.js"></script>
+  <script src="js/auth.js?v=2"></script>
   <script src="js/menu.js"></script>
+  <script src="js/obsah.js?v=7"></script>
   <script>
-    // Stránka se vykreslí jen pro ADMINa (auth.js ji jinak zablokuje)
-    if (Auth.maRoli('admin')) {
-      document.getElementById('admin-obsah').style.display = 'block';
-      vykresli();
-    }
+    document.addEventListener('smp-role', function (e) {
+      var u = e.detail;
+      if (u && u.role === 'admin') {
+        document.getElementById('admin-obsah').style.display = 'block';
+        vykresli();
+      }
+    });
 
-    function roleNazev(r) {
-      return { admin: 'ADMIN', redaktor: 'Redaktor', cekatel: 'Čeká na schválení' }[r];
+    function roleNazevRole(r) {
+      return { admin: 'ADMIN', redaktor: 'Redaktor' }[r] || r;
     }
 
     function vykresli() {
-      var tbody = document.getElementById('radky-uzivatelu');
-      var vsichni = Auth.vsechnyUzivatele();
+      var tbody = document.getElementById('radky-rol');
       tbody.innerHTML = '';
-      vsichni.forEach(function (u) {
+      Auth.lidiSeznam().forEach(function (clovek) {
         var tr = document.createElement('tr');
-        var ja = (u.email === (Auth.aktualni() || {}).email);
+        var trvaly = Auth.jeAdminEmail(clovek.email);
+        var akce = '<div class="akce-bunky">';
+        if (!trvaly) {
+          if (clovek.role !== 'redaktor') akce += '<button class="btn-redaktor" data-email="' + clovek.email + '" data-jmeno="' + clovek.jmeno + '" data-role="redaktor">Redaktor</button>';
+          if (clovek.role !== 'admin') akce += '<button class="btn-admin" data-email="' + clovek.email + '" data-jmeno="' + clovek.jmeno + '" data-role="admin">ADMIN</button>';
+          akce += '<button class="btn-smazat" data-odebrat="' + clovek.email + '">Odebrat</button>';
+        } else {
+          akce += '<span style="color:var(--sedivo);font-size:.8rem">trvalý admin (konfigurace)</span>';
+        }
+        akce += '</div>';
         tr.innerHTML =
-          '<td><strong>' + u.jmeno + '</strong>' + (ja ? ' <span class="odznak odznak-admin">ty</span>' : '') + '</td>' +
-          '<td>' + u.email + '</td>' +
-          '<td><span class="odznak odznak-' + u.role + '">' + roleNazev(u.role) + '</span></td>' +
-          '<td class="akce-bunky">' +
-            (u.role !== 'redaktor' ? '<button class="btn-redaktor" data-email="' + u.email + '" data-role="redaktor">→ Redaktor</button>' : '') +
-            (u.role !== 'admin' ? '<button class="btn-admin" data-email="' + u.email + '" data-role="admin">→ ADMIN</button>' : '') +
-            (u.role !== 'cekatel' ? '<button class="btn-cekatel" data-email="' + u.email + '" data-role="cekatel">→ Zamítnout</button>' : '') +
-            (!ja ? '<button class="btn-smazat" data-smazat="' + u.email + '"> Smazat</button>' : '') +
-          '</td>';
+          '<td><strong>' + clovek.jmeno + '</strong></td>' +
+          '<td>' + clovek.email + '</td>' +
+          '<td><span class="odznak odznak-' + clovek.role + '">' + roleNazevRole(clovek.role) + '</span></td>' +
+          '<td>' + akce + '</td>';
         tbody.appendChild(tr);
       });
-
       tbody.querySelectorAll('button[data-email]').forEach(function (b) {
         b.addEventListener('click', function () {
-          Auth.zmenRoli(b.getAttribute('data-email'), b.getAttribute('data-role'));
-          vykresli();
+          uloz(b.getAttribute('data-email'), b.getAttribute('data-jmeno'), b.getAttribute('data-role'));
         });
       });
-      tbody.querySelectorAll('button[data-smazat]').forEach(function (b) {
+      tbody.querySelectorAll('button[data-odebrat]').forEach(function (b) {
         b.addEventListener('click', function () {
-          if (confirm('Opravdu smazat účet ' + b.getAttribute('data-smazat') + '?')) {
-            Auth.smazUzivatele(b.getAttribute('data-smazat'));
-            vykresli();
+          if (confirm('Odebrat ' + b.getAttribute('data-odebrat') + ' z rolí?')) {
+            uloz(b.getAttribute('data-odebrat'), '', '');
           }
         });
       });
     }
+
+    function uloz(email, jmeno, role) {
+      var hlaseni = document.getElementById('spr-hlaseni');
+      hlaseni.className = 'upr-hlaseni';
+      hlaseni.textContent = 'Ukládám…';
+      Auth.ziskejToken(function (token) {
+        if (!token) {
+          hlaseni.className = 'upr-hlaseni hlaseni-chyba';
+          hlaseni.textContent = 'Nepodařilo se přihlásit Googlem.';
+          return;
+        }
+        var zaklad = 'https://sheets.googleapis.com/v4/spreadsheets/' + TABULKA_ID + '/values/Role!A:C';
+        fetch(zaklad, { headers: { 'Authorization': 'Bearer ' + token } })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var radky = data.values || [];
+            var idx = -1;
+            for (var i = 1; i < radky.length; i++) {
+              if (((radky[i][0] || '').trim().toLowerCase()) === email.toLowerCase()) { idx = i; break; }
+            }
+            if (role === '') {
+              if (idx === -1) return true;
+              return fetch(zaklad + (idx + 1) + ':C' + (idx + 1) + ':clear', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }).then(function (r) { return r.ok; });
+            }
+            var hodnoty = [[email, jmeno, role]];
+            if (idx === -1) {
+              return fetch(zaklad + ':append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS', {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ values: hodnoty })
+              }).then(function (r) { return r.ok; });
+            }
+            var cislo = idx + 1;
+            return fetch(zaklad + cislo + ':C' + cislo + '?valueInputOption=USER_ENTERED', {
+              method: 'PUT',
+              headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ values: hodnoty })
+            }).then(function (r) { return r.ok; });
+          })
+          .catch(function () { return false; })
+          .then(function (ok) {
+            if (ok) {
+              hlaseni.className = 'upr-hlaseni hlaseni-ok';
+              hlaseni.textContent = 'Uloženo.';
+              Auth.nactiRole(function () { vykresli(); });
+            } else {
+              hlaseni.className = 'upr-hlaseni hlaseni-chyba';
+              hlaseni.textContent = 'Uložení se nepovedlo. Zkontroluj, že v tabulce existuje list „Role“ (email | jmeno | role) a že tvůj účet má právo editovat.';
+            }
+          });
+      });
+    }
+
+    document.getElementById('spr-ulozit').addEventListener('click', function () {
+      var email = document.getElementById('spr-email').value.trim();
+      var jmeno = document.getElementById('spr-jmeno').value.trim();
+      var role = document.getElementById('spr-role').value;
+      if (!email || email.indexOf('@') === -1) {
+        alert('Zadej platný e-mail.');
+        return;
+      }
+      uloz(email, jmeno || email, role);
+    });
   </script>
 </body>
 </html>

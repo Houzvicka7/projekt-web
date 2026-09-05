@@ -14,8 +14,8 @@
 
   <div class="topbar">
     <div class="container">
-      <span> Školní Mediální Portál – časopis • TV • reportáže</span>
-      <a href="tym-kontakt.html"> Máš nápad na článek? Napiš nám!</a>
+      <span>Školní Mediální Portál – časopis • TV • reportáže</span>
+      <a href="tym-kontakt.html">Máš nápad na článek? Napiš nám!</a>
     </div>
   </div>
 
@@ -41,46 +41,24 @@
 
   <div class="hero" style="padding:40px 0">
     <div class="container">
-      <h1>Přihlášení pro tým </h1>
+      <h1>Přihlášení pro tým</h1>
       <p>Čtenářům se nic nemění – celý web je pro ně otevřený bez přihlášení.<br>
-         Přihlašují se jen redaktoři, učitelé a webmaster (aby viděli návody a redaktorské zprávy).</p>
+         Přihlašují se jen redaktoři, učitelé a webmaster – svým Google účtem.</p>
     </div>
   </div>
 
   <section>
     <div class="container">
       <div class="karta formular-karta">
-
-        <div class="prepinac">
-          <button id="tab-prihlaseni" class="prepinac-btn aktivni" type="button">Přihlásit se</button>
-          <button id="tab-registrace" class="prepinac-btn" type="button">Vytvořit účet</button>
-        </div>
-
+        <h3 style="text-align:center;color:var(--modra-tmava);margin-bottom:8px">Přihlášení do týmu</h3>
+        <p style="text-align:center;color:var(--sedivo);font-size:.92rem">Přihlaš se svým Google (školním) účtem.<br>
+           Roli (redaktor / admin) přiřazuje admin v sekci Správa – stačí se pak jen přihlásit.</p>
+        <div id="google-prihlaseni" style="display:flex;justify-content:center;margin-top:18px"></div>
         <div id="hlaseni"></div>
-
-        <form id="form-prihlaseni" class="formular">
-          <label for="p-email">E-mail</label>
-          <input type="email" id="p-email" autocomplete="username" required>
-          <label for="p-heslo">Heslo</label>
-          <input type="password" id="p-heslo" autocomplete="current-password" required>
-          <button type="submit" class="tlacitko tlacitko-drugi formular-tlacitko">Přihlásit se</button>
-          <p class="napoveda-demo">Demo admin: <code>admin@skola.cz</code> / heslo <code>admin123</code></p>
-        </form>
-
-        <form id="form-registrace" class="formular" style="display:none">
-          <label for="r-jmeno">Jméno</label>
-          <input type="text" id="r-jmeno" autocomplete="name" required>
-          <label for="r-email">E-mail</label>
-          <input type="email" id="r-email" autocomplete="email" required>
-          <label for="r-heslo">Heslo (alespoň 6 znaků)</label>
-          <input type="password" id="r-heslo" autocomplete="new-password" minlength="6" required>
-          <button type="submit" class="tlacitko tlacitko-drugi formular-tlacitko">Vytvořit účet</button>
-          <p class="napoveda-demo">Nový účet čeká, dokud ho admin nezařadí mezi redaktory.</p>
-        </form>
-
       </div>
     </div>
   </section>
+
   <footer>
     <div class="paticka">
       <div>
@@ -94,15 +72,15 @@
           <li><a href="index.html">Úvod</a></li>
           <li><a href="casopis.html">Školní Časopis</a></li>
           <li><a href="tv-reportaze.html">Školní TV a Reportáže</a></li>
-          <li><a href="tym-kontakt.html">Tým &amp; Kontakt</a></li>
+          <li><a href="tym-kontakt.html">Tým a Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul>
-          <li> Webmaster: Štěpán (9. třída)</li>
-          <li> Redakce: Magda a tým</li>
-          <li> <a href="tym-kontakt.html">Formulář pro nápady</a></li>
+          <li>Webmaster: Štěpán (9. třída)</li>
+          <li>Redakce: Magda a tým</li>
+          <li><a href="tym-kontakt.html">Formulář pro nápady</a></li>
         </ul>
       </div>
     </div>
@@ -112,55 +90,22 @@
     </div>
   </footer>
 
-  <script src="js/auth.js"></script>
+  <script src="js/auth.js?v=2"></script>
   <script src="js/menu.js"></script>
   <script>
-    var tabP = document.getElementById('tab-prihlaseni');
-    var tabR = document.getElementById('tab-registrace');
-    var fP = document.getElementById('form-prihlaseni');
-    var fR = document.getElementById('form-registrace');
-
-    function zobraz(prihlasovaci) {
-      fP.style.display = prihlasovaci ? 'block' : 'none';
-      fR.style.display = prihlasovaci ? 'none' : 'block';
-      tabP.classList.toggle('aktivni', prihlasovaci);
-      tabR.classList.toggle('aktivni', !prihlasovaci);
-      document.getElementById('hlaseni').innerHTML = '';
-    }
-    tabP.addEventListener('click', function () { zobraz(true); });
-    tabR.addEventListener('click', function () { zobraz(false); });
-
-    function hlaseni(text, ok) {
-      document.getElementById('hlaseni').innerHTML =
-        '<div class="hlaseni ' + (ok ? 'hlaseni-ok' : 'hlaseni-chyba') + '">' + text + '</div>';
-    }
-
-    fP.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var vysledek = Auth.prihlas(
-        document.getElementById('p-email').value,
-        document.getElementById('p-heslo').value
-      );
-      if (vysledek.ok) {
-        hlaseni(' Přihlášení proběhlo úspěšně, přesměrovávám…', true);
-        setTimeout(function () { location.href = 'index.html'; }, 800);
+    document.addEventListener('DOMContentLoaded', function () {
+      var plocha = document.getElementById('google-prihlaseni');
+      var u = Auth.aktualni();
+      if (u) {
+        plocha.innerHTML = '<div class="hlaseni hlaseni-ok" style="width:100%">Jsi přihlášený jako <strong>' + u.jmeno +
+          '</strong> (' + u.email + ') – role: ' + u.role + '.</div>' +
+          '<p style="text-align:center;margin-top:10px"><button class="tlacitko-maly" id="odhlas">Odhlásit se</button></p>';
+        document.getElementById('odhlas').addEventListener('click', function () {
+          Auth.odhlasit();
+          location.reload();
+        });
       } else {
-        hlaseni(' ' + vysledek.chyba, false);
-      }
-    });
-
-    fR.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var vysledek = Auth.registrace(
-        document.getElementById('r-jmeno').value,
-        document.getElementById('r-email').value,
-        document.getElementById('r-heslo').value
-      );
-      if (vysledek.ok) {
-        hlaseni(' Účet vytvořen! Admin tě zařadí mezi redaktory, pak se přihlaš.', true);
-        setTimeout(function () { zobraz(true); }, 1500);
-      } else {
-        hlaseni(' ' + vysledek.chyba, false);
+        Auth.vykresliPrihlasovaciTlacitko(plocha, null);
       }
     });
   </script>

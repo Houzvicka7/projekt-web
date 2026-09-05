@@ -22,7 +22,7 @@
 var TABULKA_URL = 'https://docs.google.com/spreadsheets/d/1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E/gviz/tq'; // tvá tabulka (sdílená: Kdokoli s odkazem)
 var TABULKA_EDIT_URL = 'https://docs.google.com/spreadsheets/d/1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E/edit';
 var TABULKA_ID = '1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E';
-var OAUTH_CLIENT_ID = '391341334196-oflts9v0j5ucbrp2k1jlj2bgkj1ukpqs.apps.googleusercontent.com'; // ← SEM VLOŽ OAUTH CLIENT ID (Google Cloud Console – návod v Redaktorských návodech, sekce Google ukládání)
+var OAUTH_CLIENT_ID = '391341334196-oflts9v0j5ucbrp2k1jlj2bgkj1ukpqs.apps.googleusercontent.com'; // Google Cloud Console – návod v Redaktorských návodech, sekce Google ukládání
 var YOUTUBE_KANAL_URL = ''; // ← SEM VLOŽ ODKAZ NA ŠKOLNÍ YOUTUBE KANÁL
 
 function parsujCsv(text) {
@@ -268,6 +268,17 @@ function seradPodleData(seznam) {
     .map(function (x) { return x.p; });
 }
 
+// Když je sekce prázdná, redaktoři uvidí krátkou nápovědu (návštěvníci nic)
+function pridejNapoveduPokudPrazdne(id, text) {
+  var el = document.getElementById(id);
+  if (!el || el.children.length) return;
+  if (!document.body.classList.contains('tym')) return;
+  var p = document.createElement('p');
+  p.className = 'upozorneni redaktorska';
+  p.textContent = text;
+  el.appendChild(p);
+}
+
 function vykresli(radky) {
   if (!radky.length) return;
   ['zpravy-list', 'videa-list', 'cisla-list', 'video-list'].forEach(function (id) {
@@ -304,41 +315,14 @@ function vykresli(radky) {
   if (zpravy.length) zobrazZpravy(zpravy);
   if (videa.length) zobrazVidea(videa);
   if (cisla.length) zobrazCisla(cisla);
+  pridejNapoveduPokudPrazdne('zpravy-list', 'Zatím tu žádná zpráva není – přidej ji panelem výš nebo v tabulce.');
+  pridejNapoveduPokudPrazdne('videa-list', 'Zatím tu žádné video není – přidej ho panelem výš nebo v tabulce.');
+  pridejNapoveduPokudPrazdne('cisla-list', 'Zatím tu žádné číslo časopisu není – přidej ho panelem výš nebo v tabulce.');
 }
 
-/* ===== Google přihlášení a zápis do tabulky (Sheets API) ===== */
-var _token = null;
-var _tokenVyprsi = 0;
-
-function nactiGsi(cb) {
-  if (window.google && window.google.accounts && window.google.accounts.oauth2) { cb(); return; }
-  var s = document.createElement('script');
-  s.src = 'https://accounts.google.com/gsi/client';
-  s.onload = cb;
-  s.onerror = function () { cb(); };
-  document.head.appendChild(s);
-}
-
+/* ===== Token pro Google API spravuje auth.js (Auth.ziskejToken) ===== */
 function ziskejToken(zpet) {
-  if (!OAUTH_CLIENT_ID) { zpet(null); return; }
-  if (_token && Date.now() < _tokenVyprsi) { zpet(_token); return; }
-  nactiGsi(function () {
-    if (!window.google || !window.google.accounts) { zpet(null); return; }
-    try {
-      google.accounts.oauth2.initTokenClient({
-        client_id: OAUTH_CLIENT_ID,
-        scope: 'https://www.googleapis.com/auth/spreadsheets',
-        callback: function (odpoved) {
-          if (odpoved && odpoved.access_token) {
-            _token = odpoved.access_token;
-            _tokenVyprsi = Date.now() + ((odpoved.expires_in || 3600) - 60) * 1000;
-            zpet(_token);
-          } else zpet(null);
-        },
-        error_callback: function () { zpet(null); }
-      }).requestAccessToken();
-    } catch (e) { zpet(null); }
-  });
+  Auth.ziskejToken(zpet);
 }
 
 function apiPridejRadek(hodnoty, hotovo) {
