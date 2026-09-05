@@ -22,7 +22,7 @@
 var TABULKA_URL = 'https://docs.google.com/spreadsheets/d/1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E/gviz/tq'; // tvá tabulka (sdílená: Kdokoli s odkazem)
 var TABULKA_EDIT_URL = 'https://docs.google.com/spreadsheets/d/1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E/edit';
 var TABULKA_ID = '1cb8J_Mm54yUh6akT00mrUtfTEoc-8wfVEzQSGsE6u1E';
-var OAUTH_CLIENT_ID = ''; // ← SEM VLOŽ OAUTH CLIENT ID (Google Cloud Console – návod v Redaktorských návodech, sekce Google ukládání)
+var OAUTH_CLIENT_ID = '391341334196-oflts9v0j5ucbrp2k1jlj2bgkj1ukpqs.apps.googleusercontent.com'; // ← SEM VLOŽ OAUTH CLIENT ID (Google Cloud Console – návod v Redaktorských návodech, sekce Google ukládání)
 var YOUTUBE_KANAL_URL = ''; // ← SEM VLOŽ ODKAZ NA ŠKOLNÍ YOUTUBE KANÁL
 
 function parsujCsv(text) {
