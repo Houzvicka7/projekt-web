@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styl.css?v=3">
+  <link rel="stylesheet" href="css/styl.css?v=5">
   <script src="js/tema.js"></script>
 </head>
 <body data-pristup="tym">
@@ -22,7 +22,7 @@
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="logo-znak">SMP</span>
+        <span class="logo-znak"><span class="logo-pisma">ŠMP</span></span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
       <button class="hamburger" aria-label="Menu"></button>
@@ -52,47 +52,76 @@
 
       <!-- Rychlé odkazy -->
       <div class="rychle-odkazy">
-        <a href="#video"> Vložit video</a>
-        <a href="#pdf"> Vydat číslo časopisu</a>
-        <a href="#ctecka"> Online čtečka</a>
-        <a href="#formular"> Formulář</a>
-        <a href="#zpravy"> Zprávy &amp; tým</a>
-        <a href="#barvy"> Barvy</a>
-        <a href="#bezpecnost"> Bezpečnost</a>
-        <a href="#publikace"> Na internet</a>
+        <a href="#tabulka">Přidávání z mobilu</a>
+        <a href="#google">Google ukládání</a>
+        <a href="#pdf">PDF časopisu</a>
+        <a href="#formular">Formulář</a>
       </div>
 
       <div class="navod-sekce" id="tabulka">
         <h2>Jak přidávat obsah z mobilu (Google Tabulky)</h2>
-        <p><strong>Jednorázové nastavení (webmaster Štěpán):</strong></p>
-        <ol>
-          <li>Vytvoř Google Tabulku. Do prvního řádku přesně tyto sloupce: <code>datum | typ | nadpis | text | odkaz</code></li>
-          <li>V tabulce: Soubor → Sdílet → <strong>Publikovat na web</strong> → vyber list a formát <strong>Hodnoty oddělené čárkou (CSV)</strong> → Publikovat → zkopíruj odkaz (končí <code>output=csv</code>).</li>
-          <li>Otevři soubor <code>js/obsah.js</code> a odkaz vlož do <code>TABULKA_URL</code> (a odkaz na YouTube kanál do <code>YOUTUBE_KANAL_URL</code>). Ulož.</li>
-        </ol>
-        <p style="margin-top:16px"><strong>Přidávání obsahu (redaktoři, na mobilu):</strong></p>
-        <ol>
-          <li>Otevři tabulku v aplikaci Google Tabulky.</li>
-          <li>Přidej řádek pod hlavičku – nejnovější vždy <strong>nahoru</strong>.</li>
-          <li>Do sloupce <code>typ</code> napiš <code>zprava</code> (blesková zpráva), <code>video</code> (do odkazu adresu YouTube videa) nebo <code>casopis</code> (do odkazu adresu PDF).</li>
-          <li>Hotovo – do pár minut se obsah sám objeví na webu.</li>
-        </ol>
-        <p style="margin-top:16px"><strong>Pozor:</strong> publikovaná tabulka je čitelná pro kohokoli s odkazem – nedávej do ní nic soukromého (GDPR!). Tabulku sdílej jen s redakcí.</p>
+        <p><strong>1. řádek – názvy sloupců:</strong> každá buňka musí obsahovat slovo <code>datum</code>, <code>typ</code>, <code>nadpis</code>, <code>text</code>, <code>odkaz</code> – za něj můžeš rovnou napsat i vysvětlivku pro redaktory (např. „datum př. 1.1.2026“). Vzorový řádek níže se na web nezobrazí.</p>
+        <div class="tabulka-wrap" style="margin-top:14px">
+          <table class="tabulka">
+            <thead><tr><th>datum</th><th>typ</th><th>nadpis</th><th>text</th><th>odkaz</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>1.1.2026<br><em>povinný u zpráv a časopisu<br>(jde i 1. 1. 2026)</em></td>
+                <td><strong>zprava</strong> / <strong>video</strong> / <strong>casopis</strong><br><em>povinný – přesně toto slovo</em></td>
+                <td>Název zprávy, videa nebo čísla časopisu</td>
+                <td>Krátký popis<br><em>nepovinný</em></td>
+                <td>Adresa YouTube videa nebo PDF<br><em>nutné u videa a časopisu</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px"><strong>Co znamená typ:</strong> určuje, KDE se položka na webu objeví – <code>zprava</code> = Bleskové zprávy na hlavní straně, <code>video</code> = Školní TV a Reportáže (nejnovější video i na hlavní straně), <code>casopis</code> = archiv čísel v časopisu.</p>
+        <p><strong>Sdílení tabulky (webmaster):</strong> zelené tlačítko <strong>Sdílet</strong> → Přístup: <strong>Kdokoli s odkazem</strong> (Čtenář). Odkaz na tabulku už má webmaster vložený v souboru <code>js/obsah.js</code> – jakmile je sdílení nastavené, obsah se začne na webu zobrazovat.</p>
+        <p><strong>Pak už jen:</strong> řádky přidávej klidně DOLŮ – web si je sám seřadí podle data (nejnovější nahoře). Bez vyplněného data se položka zobrazí na konci. U videa vždy do <code>odkaz</code> dej adresu YouTube videa.</p>
+        <p>Nové příspěvky se na webu objeví samy – do zhruba minuty, i bez obnovení stránky. Nejnovější video se samo ukáže na hlavní straně a další nejnovější videa na stránce Školní TV.</p>
+        <p><strong>Šikovná pomůcka:</strong> na stránkách je (pro tým) panel <strong>Rychlé přidání obsahu</strong> – vyplníš ho a kliknutím se ti vygenerovaný řádek zkopíruje a otevře se tabulka, kam ho jen vložíš.</p>
+        <p style="margin-top:16px"><strong>Jak vložit PDF časopisu:</strong> postup najdeš níže v sekci <a href="#pdf">PDF časopisu</a>.</p>
+
+        <p style="margin-top:16px"><strong>Pozor:</strong> publikovaná tabulka je čitelná pro kohokoli s odkazem – nic soukromého (GDPR!). Tabulku sdílej jen s redakcí.</p>
       </div>
 
-      <div class="navod-sekce" id="video">
-        <h2> Jak vložit NOVÉ VIDEO (méně než 3 minuty)</h2>
+      <div class="navod-sekce" id="google">
+        <h2>Google ukládání – publikování a úpravy přímo ze stránky</h2>
+        <p>Aby šlo <strong>Publikovat</strong> v panelu i <strong>Upravit</strong> u zpráv ukládat rovnou do tabulky (bez jejího otvírání), musí webmaster jednorázově povolit Google přihlášení:</p>
         <ol>
-          <li>Nahraj video na <strong>Školní YouTube kanál</strong> (nikdy přímo na web!).</li>
-          <li>Na YouTube klikni na video → <em>Sdílet</em> → <em>Vložit (Embed)</em> → zkopíruj kód začínající <code>&lt;iframe ...&gt;</code>.</li>
-          <li>Otevři <code>tv-reportaze.html</code> (nebo <code>index.html</code> pro nejnovější video).</li>
-          <li>Najdi komentář <code>===== ZDE VLOŽ EMBED KÓD =====</code> a nahraď zástupný blok (div s třídou <code>video</code>) tímto kódem:</li>
+          <li>Otevři <code>console.cloud.google.com</code> → vytvoř projekt (např. ŠMP web).</li>
+          <li>API a služby → Knihovna → najdi a <strong>zapni Google Sheets API</strong>.</li>
+          <li>API a služby → Obrazovka pro souhlas OAuth → typ <strong>Externí</strong> → vyplň název aplikace a e-mail. V sekci <strong>Testovací uživatelé</strong> přidej e-maily redaktorů (jen oni se budou moct přihlásit).</li>
+          <li>Přihlašovací údaje → Vytvořit přihlašovací údaje → <strong>ID klienta OAuth</strong> → Typ: <strong>Webová aplikace</strong> → do <strong>Autorizované zdroje JavaScriptu</strong> přidej adresy webu: <code>https://projekt-web.onrender.com</code> → Vytvořit → zkopíruj <strong>Client ID</strong> (končí <code>.apps.googleusercontent.com</code>).</li>
+          <li>Client ID vlož do <code>OAUTH_CLIENT_ID</code> v souboru <code>js/obsah.js</code> (jediné místo) a pusť novou verzi webu.</li>
         </ol>
-        <pre>&lt;div class="video"&gt;
-  &lt;iframe src="https://www.youtube-nocookie.com/embed/ID_VIDEA"
-          title="Název videa" allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;</pre>
-        <p style="margin-top:10px">ID videa najdeš v adrese YouTube za <code>watch?v=</code> – jen ho zkopíruj. Ulož a obnov prohlížeč. Hotovo </p>
+        <p style="margin-top:12px"><strong>Jak to pak funguje:</strong> tlačítko <strong>Publikovat</strong> v panelu přidá řádek rovnou do tabulky a <strong>Upravit</strong> u zprávy umožní text přepsat a uložit – vše bez otvírání tabulky. Při prvním uložení Google požádá o přihlášení (školní účtem, který má přístup k tabulce). Když Google ukáže varování o neověřené aplikaci → Pokročilé → Přejít na aplikaci (je to naše).</p>
+        <p><strong>Dokud Client ID není vložené:</strong> web funguje jako doposud – použij tlačítko Zkopírovat řádek a otevřít tabulku.</p>
+      </div>
+
+      <div class="navod-sekce" id="pdf">
+        <h2>Jak vložit PDF časopisu</h2>
+        <ol>
+          <li>Nahraj PDF na <strong>Google Disk</strong> (aplikace Disk je i v mobilu).</li>
+          <li>Soubor → Sdílet → přístup <strong>Kdokoli s odkazem</strong> → Kopírovat odkaz.</li>
+          <li>V tabulce přidej řádek: <code>datum</code> = datum vydání (1.1.2026), <code>typ</code> = <code>casopis</code>, <code>nadpis</code> = např. Číslo 1 / 2026, <code>odkaz</code> = odkaz z Disku.</li>
+          <li>Hotovo – web sám udělá kartu s tlačítky Přečíst (čtečka) a Stáhnout PDF.</li>
+        </ol>
+        <p style="margin-top:12px">Z běžného odkazu z Disku si web sám vytvoří náhled pro čtečku – nic nemusíš převádět.</p>
+      </div>
+
+      <div class="navod-sekce" id="google">
+        <h2>Google ukládání – publikování a úpravy přímo ze stránky</h2>
+        <p>Aby šlo <strong>Publikovat</strong> v panelu i <strong>Upravit</strong> u zpráv ukládat rovnou do tabulky (bez jejího otvírání), musí webmaster jednorázově povolit Google přihlášení:</p>
+        <ol>
+          <li>Otevři <code>console.cloud.google.com</code> → vytvoř projekt (např. ŠMP web).</li>
+          <li>API a služby → Knihovna → najdi a <strong>zapni Google Sheets API</strong>.</li>
+          <li>API a služby → Obrazovka pro souhlas OAuth → typ <strong>Externí</strong> → vyplň název aplikace a e-mail. V sekci <strong>Testovací uživatelé</strong> přidej e-maily redaktorů (jen oni se budou moct přihlásit).</li>
+          <li>Přihlašovací údaje → Vytvořit přihlašovací údaje → <strong>ID klienta OAuth</strong> → Typ: <strong>Webová aplikace</strong> → do <strong>Autorizované zdroje JavaScriptu</strong> přidej adresy webu: <code>https://projekt-web.onrender.com</code> → Vytvořit → zkopíruj <strong>Client ID</strong> (končí <code>.apps.googleusercontent.com</code>).</li>
+          <li>Client ID vlož do <code>OAUTH_CLIENT_ID</code> v souboru <code>js/obsah.js</code> (jediné místo) a pusť novou verzi webu.</li>
+        </ol>
+        <p style="margin-top:12px"><strong>Jak to pak funguje:</strong> tlačítko <strong>Publikovat</strong> v panelu přidá řádek rovnou do tabulky a <strong>Upravit</strong> u zprávy umožní text přepsat a uložit – vše bez otvírání tabulky. Při prvním uložení Google požádá o přihlášení (školní účtem, který má přístup k tabulce). Když Google ukáže varování o neověřené aplikaci → Pokročilé → Přejít na aplikaci (je to naše).</p>
+        <p><strong>Dokud Client ID není vložené:</strong> web funguje jako doposud – použij tlačítko Zkopírovat řádek a otevřít tabulku.</p>
       </div>
 
       <div class="navod-sekce" id="pdf">
@@ -106,63 +135,12 @@
         </ol>
       </div>
 
-      <div class="navod-sekce" id="ctecka">
-        <h2> Online čtečka (listování přímo na webu)</h2>
-        <ul>
-          <li>Stránka <code>ctecka.html</code> umí zobrazit PDF přímo v prohlížeči – čtenář v ní listuje i v mobilu.</li>
-          <li>Odkaz vypadá takto: <code>&lt;a href="ctecka.html?pdf=ODKAZ-NA-PDF"&gt; Přečíst&lt;/a&gt;</code></li>
-          <li>U PDF z Google Disku použij adresu tvaru <code>https://drive.google.com/file/d/ID_SOBORU/preview</code> – ta se do rámce hodí nejlépe.</li>
-          <li>Případně můžeš použít listovací službu (Flipsnack / Issuu) a její embed kód vložit do sekce čtečky v <code>casopis.html</code>.</li>
-        </ul>
-      </div>
-
       <div class="navod-sekce" id="formular">
         <h2> Jak vložit FORMULÁŘ PRO NÁPADY</h2>
         <ol>
           <li>Vytvoř Google Formulář (na školním účtu) → <em>Odeslat</em> → ikona <code>&lt;&gt;</code> → zkopíruj HTML kód.</li>
           <li>Otevři <code>tym-kontakt.html</code>, najdi komentář <code>===== ZDE VLOŽ EMBED GOOGLE FORMULÁŘE =====</code> a zástupný blok nahraď zkopírovaným kódem.</li>
         </ol>
-      </div>
-
-      <div class="navod-sekce" id="zpravy">
-        <h2> Jak přidat BLESKOVOU ZPRÁVU nebo ČLENA TÝMU</h2>
-        <ul>
-          <li>V <code>index.html</code> zkopíruj celý <code>&lt;div class="karta zprava"&gt;...&lt;/div&gt;</code> a vlož ho jako první v sekci Bleskové zprávy. Přepiš datum, nadpis a text.</li>
-          <li>V <code>tym-kontakt.html</code> zkopíruj <code>&lt;div class="karta clen"&gt;...&lt;/div&gt;</code> a přepiš údaje.</li>
-        </ul>
-      </div>
-
-      <div class="navod-sekce" id="barvy">
-        <h2> Jak změnit BARVY WEBU</h2>
-        <ul>
-          <li>V souboru <code>css/styl.css</code> jsou na začátku všechny barvy na jednom místě.</li>
-          <li>Změníš jednu hodnotu → změní se celý web (hlavička, tlačítka, patička…).</li>
-        </ul>
-      </div>
-      <div class="navod-sekce" id="bezpecnost">
-        <h2> Bezpečnost, práva a pravidla (NEMĚNIT!)</h2>
-        <ul>
-          <li><strong>Admin práva:</strong> pouze Štěpán + garant/učitel. Nikdo jiný nesmí mazat web nebo měnit strukturu.</li>
-          <li><strong>Redaktoři:</strong> vkládají jen nové příspěvky a soubory, strukturu webu nemění.</li>
-          <li><strong>GDPR:</strong> na web a YouTube patří POUZE žáci se souhlasem – vždy ověřit u vedení školy.</li>
-          <li><strong>Účty:</strong> nové účty schvaluje admin na stránce <a href="admin.html">Správa</a>. Nikdy nesdílej hesla!</li>
-          <li><strong>Poznámka:</strong> přihlašování je zatím simulace (účty v prohlížeči). Po přechodu na Firebase budou účty skutečné a společné.</li>
-        </ul>
-      </div>
-
-      <div class="navod-sekce" id="publikace">
-        <h2> Přesun na internet (až bude web hotový)</h2>
-        <ul>
-          <li>Kód funguje všude – stačí nahrát tyto soubory na:</li>
-          <li><strong>Netlify Drop</strong> (zdarma, přetáhnutí složky do prohlížeče – nejjednodušší),</li>
-          <li><strong>GitHub Pages</strong> (zdarma, ideální pro školní projekt),</li>
-          <li>nebo školní hosting / Webnode přes FTP.</li>
-        </ul>
-      </div>
-
-      <div class="upozorneni redaktorska" data-navod="publikace">
-         <strong>Pravidlo pro Štěpána:</strong> pokud vkládání nového článku zabere víc než
-        3 minuty → systém je moc složitý a je potřeba ho zjednodušit.
       </div>
 
     </div>

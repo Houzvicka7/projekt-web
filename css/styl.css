@@ -40,7 +40,8 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdr
 .hlavicka{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 24px;max-width:1140px;margin:0 auto;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.06rem;color:var(--modra-tmava);letter-spacing:-.01em}
 .logo small{display:block;font-weight:500;font-size:.72rem;color:var(--sedivo);letter-spacing:.02em}
-.logo-znak{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--modra),var(--plocha-tmava));color:#fff;font-weight:800;font-size:.9rem;letter-spacing:.5px;box-shadow:0 4px 12px rgba(19,42,77,.3);flex-shrink:0;transition:transform .25s ease}
+.logo-znak{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#fff;border:2px solid var(--ramik);box-shadow:0 4px 12px rgba(19,42,77,.2);flex-shrink:0;transition:transform .25s ease}
+.logo-pisma{font-weight:800;font-size:1rem;letter-spacing:.5px;background:linear-gradient(90deg,#2456a6 0 34%,#e02f2f 34% 67%,#3d8a55 67%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo:hover .logo-znak{transform:scale(1.07) rotate(-4deg)}
 
 .hamburger{display:none;position:relative;background:none;border:2px solid var(--modra);border-radius:9px;width:46px;height:42px;cursor:pointer;transition:border-color .2s ease}
@@ -57,7 +58,7 @@ nav a.aktivni{background:var(--modra-svetla);color:var(--modra)}
 nav a.aktivni::after{content:'';position:absolute;left:14px;right:14px;bottom:3px;height:3px;border-radius:3px;background:var(--oranzova)}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--plocha-tmava) 0%,#1d3f74 60%,var(--modra) 115%);color:#fff;padding:88px 0 92px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#1d3f74 0%,#2456a6 62%,#3d6fc2 115%);color:#fff;padding:60px 0 66px}
 .hero::before{content:'';position:absolute;top:-140px;right:-120px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(240,167,46,.3),transparent 65%);animation:plov 8s ease-in-out infinite alternate}
 .hero::after{content:'';position:absolute;bottom:-170px;left:-110px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 65%);animation:plov 10s ease-in-out infinite alternate-reverse}
 @keyframes plov{from{transform:translateY(0) scale(1)}to{transform:translateY(34px) scale(1.09)}}
@@ -102,17 +103,17 @@ h2 .vpravo{margin-left:auto;font-size:.85rem;font-weight:600}
 .zprava p{font-size:.93rem;color:var(--sedivo)}
 
 /* ---------- Video ---------- */
-.video{position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--plocha-tmava),#1d3f74);border-radius:16px;overflow:hidden;box-shadow:var(--stin);margin-bottom:16px}
+.video{position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#e5eefb,#cddcf3);border:1px solid var(--ramik);border-radius:16px;overflow:hidden;box-shadow:var(--stin);margin-bottom:16px}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#7f97bd;gap:2px;text-align:center;padding:12px;font-size:.95rem}
-.video-fallback::before{content:'';width:0;height:0;border-left:30px solid rgba(255,255,255,.45);border-top:19px solid transparent;border-bottom:19px solid transparent;margin-bottom:14px;transition:transform .25s ease}
+.video-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4a6076;gap:2px;text-align:center;padding:12px;font-size:.95rem}
+.video-fallback::before{content:'';width:0;height:0;border-left:30px solid rgba(31,79,163,.4);border-top:19px solid transparent;border-bottom:19px solid transparent;margin-bottom:14px;transition:transform .25s ease}
 .video:hover .video-fallback::before{transform:scale(1.15)}
 
 /* ---------- Obálka časopisu ---------- */
-.obalka{position:relative;overflow:hidden;width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,var(--modra) 0%,var(--plocha-tmava) 100%);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;text-align:center;padding:24px;box-shadow:var(--stin);margin-bottom:16px}
-.obalka::before{content:'';position:absolute;inset:14px;border:1px solid rgba(255,255,255,.28);border-radius:10px}
+.obalka{position:relative;overflow:hidden;width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#eef4fc,#cddcf3);border:1px solid var(--ramik);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--modra-tmava);text-align:center;padding:24px;box-shadow:var(--stin);margin-bottom:16px}
+.obalka::before{content:'';position:absolute;inset:14px;border:1px solid rgba(31,79,163,.22);border-radius:10px}
 .obalka .cislo{font-size:1.3rem;font-weight:800}
-.obalka .rok{color:#c3d2ea;font-size:.88rem}
+.obalka .rok{color:var(--sedivo);font-size:.88rem}
 
 /* ---------- Rozcestník ---------- */
 .dlazdice{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -282,6 +283,7 @@ html.anim-ready section{opacity:0;transform:translateY(28px);transition:opacity 
 html.anim-ready section.viditelne{opacity:1;transform:none}
 
 @media (max-width:820px){
+  header{position:static}
   .hamburger{display:block}
   nav{display:none;width:100%;order:5}
   nav.otevreno{display:block}
@@ -320,8 +322,60 @@ html.anim-ready section.viditelne{opacity:1;transform:none}
 /* ============================================
    TMAVÝ REŽIM – gradientní plochy se přizpůsobí
    ============================================ */
-[data-tema="tmavy"] .obalka{background:linear-gradient(160deg,#1c2c48,#0d1a2e);border:1px solid #223349}
+[data-tema="tmavy"] .obalka{background:linear-gradient(160deg,#1c2c48,#0d1a2e);border:1px solid #223349;color:#fff}
+[data-tema="tmavy"] .obalka .rok{color:#c3d2ea}
+[data-tema="tmavy"] .obalka::before{border-color:rgba(255,255,255,.28)}
 [data-tema="tmavy"] .video{background:linear-gradient(135deg,#0d1a2e,#142c4d)}
-[data-tema="tmavy"] .logo-znak{background:linear-gradient(135deg,#33639f,#0d1a2e)}
 [data-tema="tmavy"] .clen .avatar{background:linear-gradient(135deg,#1a2942,#141f33)}
 [data-tema="tmavy"] .banner-youtube .tlacitko-drugi{background:#33639f}
+
+/* ============================================
+   KOMPAKTNÍ PANEL „PŘIDAT OBSAH“ + UPRAVIT
+   ============================================ */
+.pridat-prepinac{display:inline-flex;align-items:center;gap:8px;background:var(--modra);color:#fff;border:0;border-radius:20px;padding:9px 18px;font-weight:800;font-size:.85rem;cursor:pointer;font-family:inherit;transition:background .2s ease,transform .18s ease}
+.pridat-prepinac:hover{background:#2a5cb8;transform:translateY(-2px)}
+.pridat-telo{margin-top:14px}
+.pridat-tlacitka{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pridat-panel-karta{padding:18px 20px}
+.tlacitko-upravit{display:inline-block;margin-top:10px;background:none;border:1px solid var(--ramik);border-radius:16px;padding:4px 14px;font-size:.78rem;font-weight:700;color:var(--sedivo);cursor:pointer;font-family:inherit;transition:border-color .2s ease,color .2s ease}
+.tlacitko-upravit:hover{border-color:var(--modra);color:var(--modra)}
+.upr-form label{display:block;font-size:.75rem;font-weight:800;color:var(--sedivo);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+.upr-form input{width:100%;padding:9px 12px;border:2px solid var(--ramik);border-radius:9px;font-family:inherit;font-size:.95rem;background:var(--bila);color:var(--text);transition:border-color .2s ease}
+.upr-form input:focus{outline:none;border-color:var(--modra)}
+.upr-tlacitka{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.upr-hlaseni{font-size:.88rem;font-weight:600;margin-top:8px}
+
+/* ============================================
+   PANEL RYCHLÉ PŘIDÁNÍ OBSAHU (jen pro tým)
+   ============================================ */
+.pridat-panel-karta{margin-top:10px;border-left:4px solid var(--oranzova)}
+.pridat-panel-karta h3{color:var(--modra-tmava);margin-bottom:6px}
+.mrizka-form{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:14px 0}
+.pridat-panel label{display:block;font-size:.78rem;font-weight:800;color:var(--sedivo);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.pridat-panel input,.pridat-panel select{width:100%;padding:10px 12px;border:2px solid var(--ramik);border-radius:9px;font-family:inherit;font-size:.95rem;background:var(--bila);color:var(--text);transition:border-color .2s ease}
+.pridat-panel input:focus,.pridat-panel select:focus{outline:none;border-color:var(--modra)}
+.pridat-panel .cele-radek{grid-column:1/-1}
+.pridat-panel .pp-napoveda{font-size:.83rem;color:var(--sedivo);margin-top:10px}
+.pridat-panel .pp-vysledek{font-family:Consolas,monospace;font-size:.85rem;border:2px dashed var(--ramik);border-radius:9px;background:var(--modra-svetla);color:var(--text)}
+@media (max-width:820px){
+  .mrizka-form{grid-template-columns:1fr}
+}
+
+/* ============================================
+   ŽIVĚJŠÍ POZADÍ STRÁNKY (světlý i tmavý režim)
+   jemné barevné světelné skvrny + tečkovaný vzor
+   ============================================ */
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(620px 420px at 88% -60px, rgba(31,79,163,.10), transparent 70%),
+    radial-gradient(520px 380px at -120px 32%, rgba(240,167,46,.11), transparent 70%),
+    radial-gradient(760px 520px at 108% 88%, rgba(61,138,85,.08), transparent 70%),
+    radial-gradient(rgba(31,79,163,.05) 1px, transparent 1.6px);
+  background-size:auto,auto,auto,26px 26px}
+[data-tema="tmavy"] body::before{
+  background:
+    radial-gradient(620px 420px at 88% -60px, rgba(107,154,232,.11), transparent 70%),
+    radial-gradient(520px 380px at -120px 32%, rgba(240,167,46,.07), transparent 70%),
+    radial-gradient(760px 520px at 108% 88%, rgba(61,138,85,.07), transparent 70%),
+    radial-gradient(rgba(159,176,197,.05) 1px, transparent 1.6px);
+  background-size:auto,auto,auto,26px 26px}

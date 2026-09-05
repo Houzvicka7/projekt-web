@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styl.css?v=3">
+  <link rel="stylesheet" href="css/styl.css?v=5">
   <script src="js/tema.js"></script>
 </head>
 <body>
@@ -22,7 +22,7 @@
   <header>
     <div class="hlavicka">
       <a class="logo" href="index.html">
-        <span class="logo-znak">SMP</span>
+        <span class="logo-znak"><span class="logo-pisma">ŠMP</span></span>
         <span>Školní Mediální Portál<small>ZŠ – školní časopis a TV tým</small></span>
       </a>
       <button class="hamburger" aria-label="Menu"></button>
@@ -53,20 +53,21 @@
         <h2 style="margin-bottom:6px">Podívej se na náš YouTube kanál</h2>
         <p>Všechna videa, rozhovory i záznamy ze školních akcí najdeš na našem kanálu.</p>
       </div>
-      <a id="odkaz-youtube" class="tlacitko tlacitko-drugi" href="#" title="Odkaz na kanál doplní webmaster v souboru js/obsah.js">Otevřít YouTube →</a>
+      <a id="odkaz-youtube" class="tlacitko tlacitko-cerveny" href="#" title="Odkaz na kanál doplní webmaster v souboru js/obsah.js">Otevřít YouTube →</a>
     </div>
   </section>
 
   <!-- PŘEHLED VIDEÍ – nové video = zkopírovat jeden <div class="karta"> blok
-       a uvnitř nahradit div class="video-fallback" YouTube embed kódem (viz NAVOD.md) -->
+       a přepsat jeho název a popis -->
   <section>
     <div class="container">
       <h2> Nejnovější videa</h2>
       <div class="upozorneni redaktorska">
-         <strong>Pro TV tým:</strong> každá kartička níže je místo pro jedno video.
-        Jakmile budete mít video na YouTube, vložte embed kód dovnitř bloku
-        (postup na stránce <a href="navody.html#video"><strong>Návod</strong></a>).
+        <strong>Pro TV tým:</strong> videa se na stránku dostanou sama z tabulky –
+        přidej řádek s <code>typ = video</code> a odkazem na YouTube.
+        Šedé kostky zmizí samy. Postup: <a href="navody.html#tabulka"><strong>Návod</strong></a>.
       </div>
+      <div class="pridat-panel"></div>
 
       <div id="videa-list" class="mrizka mrizka-3" style="margin-bottom:22px"></div>
       <div id="videa-zaloha" class="mrizka mrizka-3">
@@ -147,6 +148,6 @@
 
   <script src="js/auth.js"></script>
   <script src="js/menu.js"></script>
-  <script src="js/obsah.js"></script>
+  <script src="js/obsah.js?v=4"></script>
 </body>
 </html>
