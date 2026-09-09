@@ -39,7 +39,7 @@ var Auth = (function () {
   }
 
   function nactiGsi(cb) {
-    if (window.google && window.google.accounts && window.google.accounts.id) { cb(); return; }
+    if (window.google && window.google.accounts && window.google.accounts.oauth2) { cb(); return; }
     var s = document.createElement('script');
     s.src = 'https://accounts.google.com/gsi/client';
     s.onload = cb;
@@ -149,18 +149,56 @@ var Auth = (function () {
       element.innerHTML = '<div class="hlaseni hlaseni-chyba">Google přihlášení není nastaveno – webmaster musí vložit OAuth Client ID (Návody).</div>';
       return;
     }
-    nactiGsi(function () {
-      if (!window.google || !window.google.accounts) return;
-      google.accounts.id.initialize({
-        client_id: OAUTH_CLIENT_ID,
-        callback: function (odpoved) {
-          var u = dekodujJwt(odpoved.credential);
-          if (!u || !u.email) return;
-          ulozSeanci({ email: u.email, jmeno: u.name || u.email, picture: u.picture || '' });
-          location.reload();
-        }
+    var tlacitko = document.createElement('button');
+    tlacitko.type = 'button';
+    tlacitko.className = 'tlacitko-maly tlacitko-google';
+    tlacitko.innerHTML = '<strong>G</strong> Přihlásit se';
+    tlacitko.addEventListener('click', function () {
+      tlacitko.disabled = true;
+      prihlasSeGoogle(function (chyba) {
+        tlacitko.disabled = false;
+        if (chyba && zpet) zpet(chyba);
       });
-      google.accounts.id.renderButton(element, { theme: 'outline', size: 'large', width: 280, text: 'signin_with', locale: 'cs' });
+    });
+    element.innerHTML = '';
+    element.appendChild(tlacitko);
+  }
+
+  // Přihlášení přes Google popup – nepotřebuje žádný vykreslený prvek od Googlu
+  function prihlasSeGoogle(zpet) {
+    nactiGsi(function () {
+      if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
+        if (zpet) zpet('Google skript se nepodařilo načíst.');
+        return;
+      }
+      try {
+        google.accounts.oauth2.initTokenClient({
+          client_id: OAUTH_CLIENT_ID,
+          scope: 'openid email profile',
+          callback: function (odpoved) {
+            if (!odpoved || !odpoved.access_token) {
+              if (zpet) zpet('Přihlášení se nepovedlo.');
+              return;
+            }
+            fetch('https://openidconnect.googleapis.com/v1/userinfo', {
+              headers: { 'Authorization': 'Bearer ' + odpoved.access_token }
+            })
+              .then(function (r) { return r.json(); })
+              .then(function (u) {
+                if (!u || !u.email) {
+                  if (zpet) zpet('Google neposlal e-mail.');
+                  return;
+                }
+                ulozSeanci({ email: u.email, jmeno: u.name || u.email, picture: u.picture || '' });
+                location.reload();
+              })
+              .catch(function () { if (zpet) zpet('Nepodařilo se načíst údaje z Googlu.'); });
+          },
+          error_callback: function () { if (zpet) zpet('Přihlášení se nepovedlo.'); }
+        }).requestAccessToken();
+      } catch (e) {
+        if (zpet) zpet('Přihlášení se nepovedlo.');
+      }
     });
   }
 
