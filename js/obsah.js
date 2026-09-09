@@ -96,14 +96,12 @@ function sestavZpravuKartu(z) {
     p.textContent = z.text;
     karta.appendChild(p);
   }
-  if (document.body.classList.contains('tym')) {
-    var upr = document.createElement('button');
-    upr.className = 'tlacitko-upravit';
-    upr.type = 'button';
-    upr.textContent = 'Upravit';
-    upr.addEventListener('click', function () { upravZpravu(karta, z); });
-    karta.appendChild(upr);
-  }
+  var upr = document.createElement('button');
+  upr.className = 'tlacitko-upravit';
+  upr.type = 'button';
+  upr.textContent = 'Upravit';
+  upr.addEventListener('click', function () { upravZpravu(karta, z); });
+  karta.appendChild(upr);
   return karta;
 }
 
@@ -472,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (odkaz) odkaz.href = YOUTUBE_KANAL_URL;
   }
   if (!TABULKA_URL) return;
-  if (document.body.classList.contains('tym')) inicializujPanely();
+  inicializujPanely();
   nactiTabulku();
   setInterval(nactiTabulku, 60000); // kontrola nového obsahu každou minutu
 });

@@ -345,6 +345,12 @@ html.anim-ready section.viditelne{opacity:1;transform:none}
 .upr-tlacitka{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .upr-hlaseni{font-size:.88rem;font-weight:600;margin-top:8px}
 
+/* Viditelnost redaktorského rozhraní řeší čistě CSS (bez časování) */
+.pridat-panel{display:none}
+body.tym .pridat-panel{display:block}
+.tlacitko-upravit{display:none}
+body.tym .tlacitko-upravit{display:inline-block}
+
 /* ============================================
    PANEL RYCHLÉ PŘIDÁNÍ OBSAHU (jen pro tým)
    ============================================ */
